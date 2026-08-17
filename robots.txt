@@ -1,4 +1,2 @@
 User-agent: *
-Allow: /
-
-Sitemap: https://dino-bruns.de/sitemap-index.xml
+Disallow: /
