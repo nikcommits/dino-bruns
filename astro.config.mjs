@@ -3,7 +3,8 @@ import tailwind from '@astrojs/tailwind';
 
 // https://astro.build/config
 export default defineConfig({
-  site: 'https://dino-bruns.de',
+  site: 'https://nikcommits.github.io',
+  base: '/dino-bruns',
   integrations: [tailwind({
     applyBaseStyles: false,
   })],
