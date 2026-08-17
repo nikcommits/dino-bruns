@@ -1,0 +1,133 @@
+---
+const pillars = [
+  {
+    number: '01',
+    title: 'Betonböden & Betonwände',
+    category: 'GIESSVERFAHREN & KALK-MARMOR-GEMISCH',
+    image: '/img/IMG_5909-512.jpg',
+    description: 'Im speziellen Gieß- und Schüttverfahren aufgetragen, damit die Masse in sich verlaufen kann. Betonwände aus Kalk-Marmor-Gemisch mit Versiegelung und Wachsbeschichtung – jedes Projekt ein echtes Unikat.',
+    benefits: [
+      'Gieß- & Schüttverfahren für einzigartigen Verlauf',
+      'Wandflächen mit Wachsbeschichtung & Lunkern nach Wunsch',
+      'Vollflächige Rutschfestigkeit & Oberflächenversiegelung',
+    ],
+    link: '/betonoptik',
+    linkText: 'Betonböden & Wände ansehen',
+  },
+  {
+    number: '02',
+    title: 'Frescolori® Kalkmarmorputz & Bäder',
+    category: 'EMISSIONSFREIE NATURROHSTOFFE',
+    image: '/img/IMG_5479-512.jpg',
+    description: 'Nach traditionell italienischem Vorbild aus natürlichen Rohstoffen entwickelt. Spezielle Bindemittelkombination und Versiegelung für 100%ige Dichtigkeit im Nasszellenbereich.',
+    benefits: [
+      '100%ige Dichtigkeit im Nasszellenbereich',
+      'Angenehmes, feuchtigkeitsregulierendes Raumklima',
+      'Zertifizierter Frescolori® Fachbetrieb in Krefeld',
+    ],
+    link: '/kalkmarmorputz',
+    linkText: 'Kalkmarmorputz & Bäder ansehen',
+  },
+  {
+    number: '03',
+    title: 'Maßteppiche & Raumausstattung',
+    category: 'TRADITION & EDLE TEXTILIEN',
+    image: '/img/interstil-milieu-f1-deckensystem-2-512.jpg',
+    description: 'Ob abgepasster Teppich oder handgefertigtes Unikat unseres Bodenspezialisten (JAB Anstoetz) sowie maßgefertigte Vorhangsysteme von interstil und Schweizer Stoffe (Fischbacher).',
+    benefits: [
+      'Höchste Haptik & lange Schönheit bei starker Beanspruchung',
+      'Präzise Vorhangsysteme & Fensteranlagen',
+      'Individuelle Beratung durch Raumausstatter Dino Bruns',
+    ],
+    link: '/raumausstattung',
+    linkText: 'Maßteppiche & Vorhänge ansehen',
+  },
+];
+---
+
+<section id="leistungen" class="py-24 bg-[#0a0a0a] text-white border-b border-white/10 relative">
+  <div class="max-w-7xl mx-auto px-4 sm:px-8">
+    
+    <!-- Section Header -->
+    <div class="flex flex-col md:flex-row justify-between items-start md:items-end gap-6 mb-20 pb-8 border-b border-white/10">
+      <div class="space-y-2">
+        <div class="text-xs uppercase tracking-[0.2em] font-semibold text-[#f0dc28]">
+          Drei meisterliche Disziplinen
+        </div>
+        <h2 class="font-serif text-4xl sm:text-5xl font-normal text-white">
+          Ganzheitliche Oberflächen & Raumdesign.
+        </h2>
+      </div>
+      <p class="text-xs sm:text-sm text-neutral-300 max-w-md font-normal leading-relaxed">
+        Raumdesign Dino Bruns in Krefeld – handwerkliche Unikate für Wand, Boden und textile Gestaltung im Rheinland.
+      </p>
+    </div>
+
+    <!-- 3 Clean Sequential Feature Cards with Elevation & High Contrast -->
+    <div class="space-y-16">
+      {pillars.map((pillar, idx) => (
+        <div 
+          class="card-elevation p-8 md:p-12 transition-all duration-300 group hover:border-[#f0dc28]/60"
+        >
+          <div class="grid grid-cols-1 lg:grid-cols-12 gap-10 items-center">
+            
+            <!-- Content Column (Alternating Order for Dynamic Feel) -->
+            <div class={`lg:col-span-6 space-y-6 ${idx % 2 === 1 ? 'lg:order-2' : 'lg:order-1'}`}>
+              <div class="flex items-center gap-4">
+                <span class="text-2xl font-serif text-[#f0dc28] font-normal">{pillar.number}</span>
+                <span class="text-xs uppercase tracking-[0.2em] text-[#f0dc28] font-semibold">
+                  {pillar.category}
+                </span>
+              </div>
+
+              <h3 class="font-serif text-3xl sm:text-4xl font-normal text-white leading-tight">
+                {pillar.title}
+              </h3>
+
+              <p class="text-sm text-neutral-200 leading-relaxed font-normal">
+                {pillar.description}
+              </p>
+
+              <ul class="space-y-3 border-t border-white/10 pt-4 text-xs text-neutral-300">
+                {pillar.benefits.map((b) => (
+                  <li class="flex items-start gap-2.5">
+                    <div class="w-4 h-4 rounded-none flex items-center justify-center text-[#f0dc28] shrink-0 mt-0.5">
+                      <svg class="w-3.5 h-3.5" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5">
+                        <path d="M20 6L9 17l-5-5"></path>
+                      </svg>
+                    </div>
+                    <span>{b}</span>
+                  </li>
+                ))}
+              </ul>
+
+              <div class="pt-4">
+                <a
+                  href={pillar.link}
+                  class="inline-flex items-center gap-2.5 text-xs font-semibold uppercase tracking-widest text-black bg-[#f0dc28] hover:bg-white px-6 py-3.5 transition-colors cursor-pointer shadow"
+                >
+                  <span>{pillar.linkText}</span>
+                  <svg class="w-3.5 h-3.5" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5">
+                    <path d="M5 12h14M12 5l7 7-7 7"></path>
+                  </svg>
+                </a>
+              </div>
+            </div>
+
+            <!-- Image Column with Zoom Effect -->
+            <div class={`lg:col-span-6 h-72 sm:h-96 overflow-hidden border border-white/15 bg-black ${idx % 2 === 1 ? 'lg:order-1' : 'lg:order-2'}`}>
+              <img
+                src={pillar.image}
+                alt={pillar.title}
+                class="w-full h-full object-cover okc-image-hover gsap-parallax-img"
+                loading="lazy"
+              />
+            </div>
+
+          </div>
+        </div>
+      ))}
+    </div>
+
+  </div>
+</section>

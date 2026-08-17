@@ -1,0 +1,546 @@
+---
+import Layout from '../layouts/Layout.astro';
+import PartnerTrust from '../components/PartnerTrust.astro';
+import ProjectPlanner from '../components/ProjectPlanner.astro';
+import GalleryLightbox from '../components/GalleryLightbox.astro';
+import galleryData from '../data/galleryData.json';
+
+const leistungen = [
+  {
+    id: 'energiesparen',
+    slug: 'energiesparen',
+    title: 'Energiesparen mit Wabenplissee',
+    category: 'ISOLIERUNG & FENSTERTECHNIK',
+    originalHeadline: 'Start zum Energiesparen …',
+    partner: 'Germania Rollo • KADECO • Duette® • Teba',
+    image: '/images/energiesparen/Teba-DUETTE-Bad-Pascal-Walter-512.jpg',
+    images: galleryData.energiesparen || [],
+    description:
+      'Sparen Sie Energie und damit bares Geld mit unserem Wabenplissee an Ihrem Fenster. Durch die spezielle Wabenstruktur wirkt das Wabenplissee wie ein isolierendes Luftpolster zwischen Wohnraum und Fensterfläche. So wird im Winter der Wärmeverlust am Fenster messbar reduziert, und im Sommer heizen sich die Räume deutlich weniger auf. Das Wabenplissee ist kein reines Funktionsprodukt, sondern verbindet textile Wohnraumästhetik mit handfestem Energiesparen in allen Farben, Dessins und Schienenausführungen.',
+    benefits: [
+      'Isolierendes Luftpolster reduziert Wärmeverlust im Winter spürbar',
+      'Effektiver Hitzestopp im Sommer bei vollem Tageslicht',
+      'Montage mit Klebeleiste, Klemmträgern oder fester Verschraubung',
+      'Fenster lassen sich weiterhin uneingeschränkt öffnen und kippen',
+      'Harmonisch angepasste Schienen und ergonomische Griffdesigns',
+    ],
+    tag: 'Energiesparen',
+  },
+  {
+    id: 'innenausbau',
+    slug: 'innenausbau',
+    title: 'Innenausbau & Komplettsanierung',
+    category: 'MEISTERHANDWERK AUS EINER HAND',
+    originalHeadline: 'Innenausbau – die gesamte Bandbreite',
+    partner: 'Dino Bruns Meisterbetrieb & Verbundpartner',
+    image: '/images/innenausbau/IMG_5529-512.jpg',
+    images: galleryData.innenausbau || [],
+    description:
+      'Dank unserer jahrzehntelangen Erfahrung bieten wir Ihnen die gesamte Bandbreite des hochwertigen Innenausbaus. Vom Trockenbau inklusive aller Abriss-, Umbau- und Verputzarbeiten über Elektroinstallationen, Lichttechnik, Maler-, Stuckateur- und Glaserarbeiten bis hin zu individuellen Schreinerarbeiten einschließlich Fenster und Türen sowie Schlosser- und Fliesenarbeiten. Alles wird individuell auf Ihre Raumarchitektur abgestimmt – mit verlässlichen Terminen, bei denen alle Gewerke Hand in Hand gehen.',
+    benefits: [
+      'Trockenbau, Akustikdecken & maßgeschneiderte Wandgestaltungen',
+      'Elektroinstallationen, moderne Lichtvouten & Stuckprofile (Orac Decor)',
+      'Schreiner-, Maler-, Glaser- und Schlosserarbeiten aus einer Hand',
+      'Vollständige Altbau- und Villensanierung inklusive Badsanierung',
+      'Persönliche Bauleitung & termintreue Meisterkoordination',
+    ],
+    tag: 'Innenausbau',
+  },
+  {
+    id: 'bodenbelaege',
+    slug: 'bodenbelag',
+    title: 'Bodenbeläge & Design-Vinyl',
+    category: 'DESIGN-ESTRICH, PARKETT & VINYL',
+    originalHeadline: 'Bodenbeläge – für alle Gelegenheiten',
+    partner: 'Project Floors • Amtico • mFLOR • Moduleo • objectflor • HIS Parkett',
+    image: '/images/bodenbelag/IMG_3136-512.jpg',
+    images: galleryData.bodenbelag || [],
+    description:
+      'Anspruchsvolles Design, hochwertige Verarbeitung und kompromisslose Funktionalität sind die Stärken unserer Bodenbeläge. Mit einer umfangreichen Produktpalette von Echtholz-Parkett über edle Teppichböden bis hin zu extrem strapazierfähigen, feuchtigkeitsunempfindlichen und pflegeleichten Design-Vinylböden (LVT) lassen sich nahezu alle Raumideen verwirklichen – im Privatbereich ebenso wie in hoch frequentierten Geschäftsräumen.',
+    benefits: [
+      'Authentische Fischgrät-, Landhausdielen- und Naturstein-Fliesenoptiken',
+      'Extrem abriebfest, fußwarm, leise Trittschallakustik und pflegeleicht',
+      'Optimal geeignet für Fußbodenheizungen und Sanierungen bei geringer Aufbauhöhe',
+      'Komplette Untergrundvorbereitung, Spachtelung und meisterhafte Verlegung',
+      'Große Musterauswahl führender Hersteller im Krefelder Showroom',
+    ],
+    tag: 'Bodenbeläge',
+  },
+  {
+    id: 'schiebetueren',
+    slug: 'schiebetueren',
+    title: 'Schiebetüren & Raumteilersysteme',
+    category: 'ALUMINIUM, GLAS & SYSTEMMÖBEL',
+    originalHeadline: 'Schiebetüren – auf Maß und individuell …',
+    partner: 'Advantage-Wohnwelt • Imbusch Systemmöbel',
+    image: '/images/schiebetueren/P1000264-512.jpg',
+    images: galleryData.schiebetueren || [],
+    description:
+      'Dank der extremen Stabilität hochwertiger Aluminiumkonstruktionen sind Konstruktionen mit schlankesten Profilen und besonders großzügigen Glasflächen möglich. Sie bieten dort, wo gewünscht, ein Maximum an Transparenz, Lichtdurchflutung und moderner Raumgliederung. Erweitern oder zonieren Sie mit wenigen leichten Griffen Ihren Wohn- oder Arbeitsbereich – maßgeschneidert auf Ihre Decken- und Wandmaße.',
+    benefits: [
+      'Schlankeste Aluminiumprofile für maximale Glasflächen und Tageslicht',
+      'Flüsterleise, kugelgelagerte Laufwerke und langlebige Bodenschienen',
+      'Flexible Raumteilung für Ankleiden, Homeoffices, Küchen und Wohnräume',
+      'Individuelle Füllungen: Klarglas, Mattglas, Holzpaneele oder Farbglas',
+      'Millimetergenaues Aufmaß und saubere Montage durch unser Fachteam',
+    ],
+    tag: 'Schiebetüren',
+  },
+  {
+    id: 'vorhangsysteme',
+    slug: 'vorhangsysteme',
+    title: 'Vorhangsysteme & Wellenvorhänge',
+    category: 'INTERSTIL DESIGN-SYSTEME & TECHNIK',
+    originalHeadline: 'Vorhangsysteme – gutes Design ist kein Zufall.',
+    partner: 'interstil Diedrichsen • JAB Anstoetz • Chivasso',
+    image: '/images/vorhangsysteme/interstil-milieu-f1-wandsystem-512.jpg',
+    images: galleryData.vorhangsysteme || [],
+    description:
+      'Vorhangsysteme von interstil für Wand- oder Deckenmontage in zeitgemäßen Oberflächen wie geschliffenem Edelstahl, Aluminium mattiert, anthrazit oder verchromt. Die patentierten Gleitelemente bleiben im Profil unsichtbar verborgen und bewegen Ihre Vorhänge flüsterleise und mit perfektem Wellenfall – selbst über große Spannweiten und durch individuelle Sonderbiegungen für Erker und Giebelverglasungen.',
+    benefits: [
+      'Verdeckte Innenlauf-Gleiter für perfekt fallende Wellenvorhänge',
+      'Wand- und Deckenmontage mit filigranen Trägern oder deckenbündigem Einbau',
+      'Individuelle Maßbiegungen für Erker, Rundungen und Dachschrägen',
+      'Exklusive Metalle: Edelstahl massiv, Aluminium handgebürstet, Chrom, Schwarz',
+      'Auf Wunsch motorisiert mit smarter Fern- oder App-Steuerung',
+    ],
+    tag: 'Vorhangsysteme',
+  },
+  {
+    id: 'teppiche',
+    slug: 'teppiche',
+    title: 'Maßteppiche & Handgefertigte Unikate',
+    category: 'JAB ANSTOETZ, KYMO & BRINK & CAMPMAN',
+    originalHeadline: 'Maßteppiche – ein Hauch von Tradition',
+    partner: 'JAB Josef Anstoetz • kymo • Brink & Campman • Longbarn • Girloon',
+    image: '/images/teppiche/kymo-residential-dzine-elena-residence-los-altos-1-512.jpg',
+    images: galleryData.teppiche || [],
+    description:
+      'Ob abgepasster Teppich in Sonderform oder handgefertigtes Unikat führender Manufakturen: Die ausgewählten Qualitäten bieten für jeden Einrichtungsstil den perfekten Akzent mit außergewöhnlicher Textur und sinnlicher Haptik. Ausgewählte Naturmaterialien wie Schurwolle, Leinen und Seide oder funktionale Hightech-Fasern garantieren, dass die edlen Teppiche auch bei intensiver Nutzung dauerhaft ihre Form und Brillanz bewahren.',
+    benefits: [
+      'Freie Wahl von Maßen, geometrischen Formen, Bordüren und Einfassungen',
+      'Erstklassige Naturfasern (Schurwolle, Tencel) oder strapazierfähige Spezialgarne',
+      'Hervorragende Trittschalldämmung und fühlbare Verbesserung der Raumakustik',
+      'Einfassungen: Lederband, Alcantara, Nubuk, Baumwollband oder blind gekettelt',
+      'Umfangreiches Musterarchiv im Krefelder Atelier zum Anfassen und Testen',
+    ],
+    tag: 'Maßteppiche',
+  },
+  {
+    id: 'dekorationen',
+    slug: 'dekorationen',
+    title: 'Dekorationen & Moos-Akustikwände',
+    category: 'TEXTILE RAUMKUNST & BIOPHILIC DESIGN',
+    originalHeadline: 'Dekorationen – das Tüpfelchen auf dem i',
+    partner: 'styleGREEN (FlowerArt) • Dedar • Zimmer + Rohde • Nya Nordiska • Kinnasand',
+    image: '/images/dekorationen/IMG_1421-512.jpg',
+    images: galleryData.dekorationen || [],
+    description:
+      'Ihre individuellen Vorstellungen und Raumwünsche bringen uns auf neue Ideen. Wir stehen Ihnen von Beginn an zur Seite und übernehmen die ganzheitliche Material-, Farb- und Akustikberatung sowie die handwerkliche Maßkonfektion. Ein besonderes Highlight sind unsere 100% natürlichen, wartungsfreien Moos- und Pflanzenwände von styleGREEN, die natürliche Ruhe und beste Schallabsorption in moderne Wohn- und Arbeitsräume bringen.',
+    benefits: [
+      'Ganzheitliche Farb-, Licht-, Akustik- und Textilkonzepte für anspruchsvolle Räume',
+      'styleGREEN Moos- und Pflanzenwände: 100% natürlich konserviert, 0% Pflegeaufwand',
+      'Exklusive Deko- & Polsterstoffe von Dedar Milano, Zimmer + Rohde und Nya Nordiska',
+      'Maßgeschneiderte Kissen, Hussen, Tagesdecken und Wandbespannungen',
+      'Für private Wohnresidenzen ebenso wie für repräsentative Kanzleien und Arztpraxen',
+    ],
+    tag: 'Dekorationen',
+  },
+  {
+    id: 'sonnenschutz',
+    slug: 'sonnenschutz',
+    title: 'Sicht- & Sonnenschutz nach Maß',
+    category: 'JALOUSIEN, ROLLOS & VERTIKALLAMELLEN',
+    originalHeadline: 'Perfekter Schutz vor Sicht und Sonne …',
+    partner: 'Germania Rollo • KADECO • Teba • Wood & Washi',
+    image: '/images/sonnenschutz/germania-vvb-110-512.jpg',
+    images: galleryData.sonnenschutz || [],
+    description:
+      'Mit dem passenden Sicht- und Sonnenschutz regulieren Sie nicht nur das einfallende Sonnenlicht, sondern inszenieren Ihre ganz persönliche Raumatmosphäre. Wir bieten Ihnen eine maßgefertigte, riesige Auswahl an Holzjalousien, textilen Rollos, Vertikallamellen und japanischen Wood & Washi Paneelen – perfekt abgestimmt auf Fenstergeometrie und Einrichtungsstil.',
+    benefits: [
+      'Maßgefertigte Holzjalousien aus nachhaltiger Forstwirtschaft, Plissees und Rollos',
+      'Blendfreies Arbeiten am Bildschirm bei natürlicher Lichtdurchflutung',
+      'Bedienoptionen: Ergonomischer Mittelgriff, Kettenzug, Schnur oder Funkmotor',
+      'Feuchtraumgeeignete Beschichtungen für Küchen und Badezimmer',
+      'Exakte Montage ohne Beschädigung von Fensterrahmen durch Spezialträger',
+    ],
+    tag: 'Sonnenschutz',
+  },
+  {
+    id: 'bettwaesche',
+    slug: 'bettwaesche',
+    title: 'Christian Fischbacher Luxusbettwäsche',
+    category: 'SCHWEIZER MANUFAKTURTRADITION AUS ST. GALLEN',
+    originalHeadline: 'Bettwäsche – höchste Standards in Ökologie und Qualität',
+    partner: 'Christian Fischbacher Co. AG (St. Gallen, Schweiz)',
+    image: '/images/bettwaesche/fischbacher-bw-felino-512.jpg',
+    images: galleryData.bettwaesche || [],
+    description:
+      'Einer der weltweit angesehensten Hersteller feinster Bettwäsche ist die Schweizer Manufaktur Christian Fischbacher aus St. Gallen. Das traditionsreiche Haus steht seit über zwei Jahrhunderten für mit viel Handarbeit gefertigte Bettwäsche aus feinstem Schweizer Baumwollsatin, Seide und Leinen. Höchste ökologische Standards, künstlerische Dessins und unvergleichlicher Schlafkomfort zeichnen jedes Set aus.',
+    benefits: [
+      'Feinster Schweizer Baumwollsatin mit edlem Seidenglanz und sanftem Griff',
+      'Ökologisch nachhaltig gefärbt, schadstofffrei und langlebig strapazierfähig',
+      'Künstlerische Dessins, handgezeichnete Motive und zeitlose Uni-Kollektionen',
+      'Perfekte Passform mit hochwertigen Reißverschlüssen oder Knopfleisten',
+      'Exklusive Kollektionskataloge und Stoffproben im Showroom Krefeld einsehbar',
+    ],
+    tag: 'Bettwäsche',
+  },
+];
+
+const partnerKategorien = [
+  {
+    kategorie: 'Mineralische Oberflächen & Bäder',
+    firmen: [
+      { name: 'Frescolori.de GmbH', ort: 'Bocholt', info: 'Kalkmarmorputz & fugenlose Badbeschichtung' },
+      { name: 'Krefelder Fliesenstudio Kiosse', ort: 'Krefeld', info: 'Exklusive Fliesen & Großkeramik' },
+      { name: 'Schmidt-Rudersdorf', ort: 'Düsseldorf', info: 'Keramische Fliesen & Badkonzepte' },
+    ],
+  },
+  {
+    kategorie: 'Design-Bodenbeläge & Parkett',
+    firmen: [
+      { name: 'Project Floors GmbH', ort: 'Hürth', info: 'LVT Design-Vinylbeläge in Fischgrät & Dielen' },
+      { name: 'Amtico International', ort: 'Neuss', info: 'High-End Designböden & Akzentstreifen' },
+      { name: 'mFLOR International', ort: 'Twello (NL)', info: 'Formstabile Design-Böden' },
+      { name: 'Houtindustrie Schijndel (HIS)', ort: 'Schijndel (NL)', info: 'Edles Manufaktur-Parkett' },
+      { name: 'objectflor Art & Design', ort: 'Köln', info: 'Strapazierfähige Objektbeläge' },
+    ],
+  },
+  {
+    kategorie: 'Vorhangsysteme, Schienen & Schiebetüren',
+    firmen: [
+      { name: 'interstil Diedrichsen', ort: 'Steinhagen', info: 'Patentierte Vorhang- und Deckensysteme' },
+      { name: 'Advantage-Wohnwelt / Imbusch', ort: 'Löningen', info: 'Aluminium-Glasschiebetüren nach Maß' },
+      { name: 'Orac Decor', ort: 'Oostende (BE)', info: 'Stuck-, Licht- und Sockelleisten' },
+    ],
+  },
+  {
+    kategorie: 'Stoffe, Maßteppiche & Akustik',
+    firmen: [
+      { name: 'JAB Josef Anstoetz / Chivasso', ort: 'Bielefeld', info: 'Maßteppiche & Dekorationsstoffe' },
+      { name: 'Christian Fischbacher', ort: 'St. Gallen (CH)', info: 'Luxusbettwäsche & edle Vorhangstoffe' },
+      { name: 'Dedar Milano', ort: 'Appiano Gentile (IT)', info: 'Italienische Haute-Couture-Textilien' },
+      { name: 'Zimmer + Rohde', ort: 'Oberursel', info: 'Moderne europäische Textilkunst' },
+      { name: 'kymo GmbH', ort: 'Karlsruhe', info: 'Contemporary Custom Rugs' },
+      { name: 'styleGREEN (FlowerArt)', ort: 'München', info: 'Konservierte Moos- & Pflanzenwände' },
+      { name: 'Germania Rollo / KADECO', ort: 'Altenholz / Espelkamp', info: 'Sicht- & Sonnenschutz, Wabenplissees' },
+    ],
+  },
+];
+---
+
+<Layout
+  title="Leistungen & Raumausstattung | Dino Bruns Raumdesign Krefeld"
+  description="Das gesamte Leistungsspektrum im Detail: Wabenplissee-Energiesparen, Innenausbau, Bodenbeläge (Project Floors), Schiebetüren, interstil Vorhangsysteme, JAB Maßteppiche, Sonnenschutz & Fischbacher Bettwäsche."
+>
+  <!-- Hero Section -->
+  <section class="relative bg-[#0a0a0a] text-white py-20 lg:py-28 border-b border-white/10 overflow-hidden bg-ambient-spotlight">
+    <div class="max-w-7xl mx-auto px-4 sm:px-8">
+      <div class="grid grid-cols-1 lg:grid-cols-12 gap-12 items-center">
+        
+        <div class="lg:col-span-7 space-y-6">
+          <div class="inline-flex items-center gap-2">
+            <span class="w-2 h-2 bg-[#f0dc28]"></span>
+            <span class="text-xs uppercase tracking-[0.2em] font-semibold text-[#f0dc28]">
+              Meisterbetrieb seit über 25 Jahren • Krefeld & Rheinland
+            </span>
+          </div>
+
+          <h1 class="font-serif text-4xl sm:text-5xl lg:text-6xl font-normal leading-[1.02] text-white">
+            Raumausstattung, Innenausbau & Textile Exzellenz.
+          </h1>
+
+          <p class="text-base sm:text-lg text-neutral-200 font-normal leading-relaxed">
+            Im Mittelpunkt unseres Schaffens stehen Sie: Ihre individuellen Räume, Wünsche und maßgeschneiderten Einzelanfertigungen. Von der energetischen Fensterisolierung mit Wabenplissees über patentierte interstil Vorhangsysteme und JAB Anstoetz Maßteppiche bis hin zur schlüsselfertigen Komplettbausanierung vereinen wir Funktion, Design und erstklassiges Handwerk zu einer harmonischen Einheit.
+          </p>
+
+          <div class="pt-4 flex flex-col sm:flex-row gap-4">
+            <a
+              href="#leistungen-katalog"
+              class="inline-flex items-center justify-center px-8 py-4 text-xs font-semibold uppercase tracking-widest text-black bg-[#f0dc28] hover:bg-white transition-all shadow-lg cursor-pointer"
+            >
+              <span>Alle 9 Fachbereiche entdecken</span>
+              <span class="ml-2 font-bold">↓</span>
+            </a>
+            <a
+              href="/projekte"
+              class="inline-flex items-center justify-center px-8 py-4 text-xs font-semibold uppercase tracking-widest text-white border border-white/25 hover:border-[#f0dc28] hover:text-[#f0dc28] transition-all bg-[#121212]"
+            >
+              Realisierte Projekte ansehen →
+            </a>
+          </div>
+        </div>
+
+        <div class="lg:col-span-5">
+          <div class="card-elevation p-2 shadow-2xl aspect-[4/3] overflow-hidden group relative">
+            <img
+              src="/images/vorhangsysteme/interstil-milieu-f1-wandsystem-512.jpg"
+              alt="interstil Vorhangsystem Dino Bruns Krefeld"
+              class="w-full h-full object-cover okc-image-hover"
+              loading="eager"
+            />
+            <div class="absolute bottom-4 left-4 bg-black/80 backdrop-blur-md px-3 py-1.5 border border-white/10 text-[11px] text-white font-mono flex items-center gap-2">
+              <span class="w-2 h-2 bg-[#f0dc28]"></span>
+              <span>Über 600 echte Projektfotos im Katalog</span>
+            </div>
+          </div>
+        </div>
+
+      </div>
+    </div>
+  </section>
+
+  <!-- Complete 9 Services Catalog Grid -->
+  <section id="leistungen-katalog" class="py-24 bg-[#0e0e0e] text-white border-b border-white/10 relative">
+    <div class="max-w-7xl mx-auto px-4 sm:px-8">
+      
+      <div class="max-w-3xl mb-16 space-y-4 pb-6 border-b border-white/10">
+        <div class="inline-flex items-center gap-2">
+          <span class="w-2 h-2 bg-[#f0dc28]"></span>
+          <span class="text-xs uppercase tracking-[0.2em] font-semibold text-[#f0dc28]">
+            Katalog & Fachgewerke
+          </span>
+        </div>
+        <h2 class="font-serif text-3xl sm:text-5xl font-normal text-white">
+          Unsere 9 Fachbereiche im Überblick.
+        </h2>
+        <p class="text-sm sm:text-base text-neutral-200 font-normal leading-relaxed">
+          Jedes Gewerk wird von Raumausstatter Dino Bruns persönlich beraten, mit Ihnen gemeinsam konzipiert und mit erstklassigen Manufaktur-Materialien ausgeführt. Klicken Sie auf die Fotos oder den Galerie-Button, um alle Originalprojekte einzusehen.
+        </p>
+      </div>
+
+      <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8 gsap-stagger-grid">
+        {leistungen.map((item) => (
+          <div id={item.id} class="card-elevation flex flex-col justify-between group hover:border-[#f0dc28]/60 transition-all duration-300 scroll-mt-28">
+            <div>
+              <!-- Featured Main Image -->
+              <div class="relative h-64 overflow-hidden border-b border-white/10 bg-black cursor-pointer group/img">
+                <img
+                  src={item.image}
+                  alt={item.title}
+                  class="w-full h-full object-cover okc-image-hover gsap-parallax-img"
+                  loading="lazy"
+                  data-open-gallery={item.slug}
+                  data-gallery-title={`${item.title} – Originalprojekte`}
+                  data-gallery-images={JSON.stringify(item.images)}
+                  data-start-index="0"
+                />
+                <div class="absolute top-0 left-0 bg-[#0a0a0a]/95 backdrop-blur-sm text-white px-3 py-1.5 text-[10px] uppercase tracking-widest border-r border-b border-white/15 font-mono">
+                  {item.tag}
+                </div>
+                <div class="absolute bottom-2 right-2 bg-black/85 backdrop-blur-md px-2.5 py-1 text-[11px] font-mono text-[#f0dc28] border border-white/15 flex items-center gap-1.5 opacity-90 group-hover/img:opacity-100 transition-opacity">
+                  <svg class="w-3.5 h-3.5" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 16l4.586-4.586a2 2 0 012.828 0L16 16m-2-2l1.586-1.586a2 2 0 012.828 0L20 14m-6-6h.01M6 20h12a2 2 0 002-2V6a2 2 0 00-2-2H6a2 2 0 00-2 2v12a2 2 0 002 2z" />
+                  </svg>
+                  <span>{item.images.length} Fotos</span>
+                </div>
+              </div>
+
+              <!-- Mini Gallery Preview Strip (Curated Thumbnails) -->
+              {item.images.length > 1 && (
+                <div class="grid grid-cols-4 gap-1 p-2 bg-[#121212] border-b border-white/10">
+                  {item.images.slice(1, 4).map((thumbSrc, tIdx) => (
+                    <div
+                      class="relative h-14 overflow-hidden border border-white/10 cursor-pointer hover:border-[#f0dc28] transition-colors group/thumb"
+                      data-open-gallery={item.slug}
+                      data-gallery-title={`${item.title} – Originalprojekte`}
+                      data-gallery-images={JSON.stringify(item.images)}
+                      data-start-index={tIdx + 1}
+                      title={`Foto ${tIdx + 2} vergrößern`}
+                    >
+                      <img
+                        src={thumbSrc}
+                        alt={`${item.title} Vorschau ${tIdx + 2}`}
+                        class="w-full h-full object-cover group-hover/thumb:scale-110 transition-transform duration-300"
+                        loading="lazy"
+                      />
+                    </div>
+                  ))}
+                  <!-- Clickable "More Photos" Tile -->
+                  <div
+                    class="relative h-14 bg-[#1a1a1a] border border-white/10 hover:border-[#f0dc28] flex flex-col items-center justify-center cursor-pointer transition-all hover:bg-[#222]"
+                    data-open-gallery={item.slug}
+                    data-gallery-title={`${item.title} – Originalprojekte`}
+                    data-gallery-images={JSON.stringify(item.images)}
+                    data-start-index="4"
+                    title="Alle Fotos in Galerie öffnen"
+                  >
+                    <span class="text-xs font-bold text-[#f0dc28]">+{Math.max(0, item.images.length - 4)}</span>
+                    <span class="text-[9px] uppercase tracking-wider text-neutral-400">Fotos</span>
+                  </div>
+                </div>
+              )}
+
+              <!-- Content Body -->
+              <div class="p-6 sm:p-8 space-y-5">
+                <div>
+                  <span class="text-[10px] uppercase tracking-widest text-[#f0dc28] font-semibold block mb-1">
+                    {item.category}
+                  </span>
+                  <h3 class="font-serif text-2xl font-normal text-white group-hover:text-[#f0dc28] transition-colors leading-snug">
+                    {item.title}
+                  </h3>
+                  <div class="text-[11px] text-neutral-400 font-serif italic pt-0.5">
+                    „{item.originalHeadline}“
+                  </div>
+                </div>
+
+                <p class="text-xs sm:text-[13px] text-neutral-200 leading-relaxed font-normal">
+                  {item.description}
+                </p>
+
+                <!-- Partner Badge -->
+                <div class="bg-[#181818] border border-white/10 px-3 py-2 text-[11px] text-neutral-300 flex items-center gap-2">
+                  <span class="text-[#f0dc28] font-bold">Marken:</span>
+                  <span class="text-white font-medium truncate">{item.partner}</span>
+                </div>
+
+                <!-- Feature List -->
+                <ul class="text-xs text-neutral-200 space-y-2.5 border-t border-white/10 pt-4 font-normal">
+                  {item.benefits.map((b) => (
+                    <li class="flex items-start gap-2.5">
+                      <div class="w-4 h-4 rounded-none flex items-center justify-center text-[#f0dc28] shrink-0 mt-0.5">
+                        <svg class="w-3.5 h-3.5" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5">
+                          <path d="M20 6L9 17l-5-5"></path>
+                        </svg>
+                      </div>
+                      <span class="leading-relaxed">{b}</span>
+                    </li>
+                  ))}
+                </ul>
+              </div>
+            </div>
+
+            <!-- Action Buttons: 1. Galerie ansehen + 2. Projekte / Beratung -->
+            <div class="p-6 sm:p-8 pt-0 space-y-3">
+              <!-- Galerie-Trigger Button -->
+              <button
+                type="button"
+                data-open-gallery={item.slug}
+                data-gallery-title={`${item.title} – Originalprojekte`}
+                data-gallery-images={JSON.stringify(item.images)}
+                data-start-index="0"
+                class="w-full py-3 px-4 bg-[#1c1c1c] hover:bg-[#f0dc28] text-white hover:text-black border border-white/15 text-xs font-semibold uppercase tracking-wider transition-all flex items-center justify-center gap-2 cursor-pointer"
+              >
+                <svg class="w-4 h-4" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                  <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 16l4.586-4.586a2 2 0 012.828 0L16 16m-2-2l1.586-1.586a2 2 0 012.828 0L20 14m-6-6h.01M6 20h12a2 2 0 002-2V6a2 2 0 00-2-2H6a2 2 0 00-2 2v12a2 2 0 002 2z" />
+                </svg>
+                <span>Fotogalerie öffnen ({item.images.length} Fotos)</span>
+              </button>
+
+              <!-- Link zu Projekten & Beratung -->
+              <div class="flex items-center justify-between border-t border-white/10 pt-3 text-[11px]">
+                <a
+                  href={`/projekte?kategorie=${item.slug}`}
+                  class="text-neutral-400 hover:text-white transition-colors"
+                >
+                  Projekte zu {item.tag} →
+                </a>
+                <a
+                  href="/kontakt"
+                  class="text-[#f0dc28] hover:underline font-medium"
+                >
+                  Beratung anfragen
+                </a>
+              </div>
+            </div>
+          </div>
+        ))}
+      </div>
+
+    </div>
+  </section>
+
+  <!-- Accredited Partner Network & Brands Section -->
+  <section id="partner" class="py-24 bg-[#0a0a0a] text-white border-b border-white/10 relative scroll-mt-20">
+    <div class="max-w-7xl mx-auto px-4 sm:px-8">
+      
+      <div class="flex flex-col md:flex-row justify-between items-start md:items-end gap-6 mb-16 pb-8 border-b border-white/10">
+        <div class="space-y-2">
+          <div class="inline-flex items-center gap-2">
+            <span class="w-2 h-2 bg-[#f0dc28]"></span>
+            <span class="text-xs uppercase tracking-[0.2em] font-semibold text-[#f0dc28]">
+              Qualitätsversprechen
+            </span>
+          </div>
+          <h2 class="font-serif text-3xl sm:text-5xl font-normal text-white">
+            Unsere Partner & Premium-Manufakturen.
+          </h2>
+        </div>
+        <div class="text-xs uppercase tracking-widest text-neutral-300">
+          Ausschließlich zertifizierte Hersteller & Fachbetriebe
+        </div>
+      </div>
+
+      <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8">
+        {partnerKategorien.map((kat) => (
+          <div class="card-elevation p-6 sm:p-8 space-y-6">
+            <h3 class="text-xs uppercase tracking-widest font-semibold text-[#f0dc28] pb-3 border-b border-white/10">
+              {kat.kategorie}
+            </h3>
+            <div class="space-y-4">
+              {kat.firmen.map((f) => (
+                <div class="space-y-1">
+                  <div class="text-sm font-semibold text-white">
+                    {f.name}
+                  </div>
+                  <div class="text-xs text-neutral-400 font-light flex items-center gap-1.5">
+                    <span>{f.ort}</span>
+                    <span>•</span>
+                    <span class="text-neutral-300">{f.info}</span>
+                  </div>
+                </div>
+              ))}
+            </div>
+          </div>
+        ))}
+      </div>
+
+    </div>
+  </section>
+
+  <!-- Cross-link to Signature Mineral Specialties -->
+  <section class="py-20 bg-[#0e0e0e] text-white border-b border-white/10">
+    <div class="max-w-7xl mx-auto px-4 sm:px-8">
+      <div class="grid grid-cols-1 lg:grid-cols-2 gap-8">
+        
+        <div class="card-elevation p-8 sm:p-12 flex flex-col justify-between space-y-6 hover:border-[#f0dc28]/60 transition-colors">
+          <div class="space-y-3">
+            <span class="text-xs uppercase tracking-widest text-[#f0dc28] font-semibold">Spezialdisziplin 01</span>
+            <h3 class="font-serif text-3xl text-white">Frescolori® Kalkmarmorputz & Fugenlose Bäder</h3>
+            <p class="text-xs sm:text-sm text-neutral-200 font-normal leading-relaxed">
+              Nach traditionell italienischem Vorbild aus natürlichen, emissionsfreien Rohstoffen entwickelt. 100%ige Dichtigkeit im Nasszellenbereich, samtige mineralische Haptik und spürbar feuchtigkeitsregulierendes Raumklima.
+            </p>
+          </div>
+          <a href="/kalkmarmorputz" class="inline-flex items-center text-xs font-semibold uppercase tracking-wider text-[#f0dc28] hover:text-white transition-colors">
+            Frescolori® Kalkmarmorputz entdecken ({galleryData.marmorputz?.length || 112} Fotos) →
+          </a>
+        </div>
+
+        <div class="card-elevation p-8 sm:p-12 flex flex-col justify-between space-y-6 hover:border-[#f0dc28]/60 transition-colors">
+          <div class="space-y-3">
+            <span class="text-xs uppercase tracking-widest text-[#f0dc28] font-semibold">Spezialdisziplin 02</span>
+            <h3 class="font-serif text-3xl text-white">Betonböden im Gießverfahren & Sichtbetonwände</h3>
+            <p class="text-xs sm:text-sm text-neutral-200 font-normal leading-relaxed">
+              Im speziellen Gieß- und Schüttverfahren aufgetragen, damit die Masse in sich verlaufen kann. Jedes Projekt ein echtes handwerkliches Unikat mit Versiegelung, Wachsbeschichtung und Lunkern nach Wunsch.
+            </p>
+          </div>
+          <a href="/betonoptik" class="inline-flex items-center text-xs font-semibold uppercase tracking-wider text-[#f0dc28] hover:text-white transition-colors">
+            Betonböden & Sichtbetonwände entdecken ({((galleryData.betonboden?.length || 25) + (galleryData.betonwand?.length || 36))} Fotos) →
+          </a>
+        </div>
+
+      </div>
+    </div>
+  </section>
+
+  <!-- Partner Trust Strip -->
+  <PartnerTrust />
+
+  <!-- Project Planner Funnel -->
+  <ProjectPlanner />
+
+  <!-- Global Fullscreen Lightbox for all Photo Galleries -->
+  <GalleryLightbox />
+</Layout>

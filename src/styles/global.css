@@ -1,0 +1,132 @@
+@import "tailwindcss/base";
+@import "tailwindcss/components";
+@import "tailwindcss/utilities";
+
+@layer base {
+  :root {
+    --color-bg-dark: #0a0a0a;
+    --color-bg-card: #121212;
+    --color-bg-elevated: #161917;
+    --color-text-light: #fafffa;
+    --color-text-muted: #a3aca5;
+    --color-accent-gold: #f0dc28;
+    --color-accent-gold-dark: #c89524;
+    --color-border: rgba(255, 255, 255, 0.12);
+    
+    /* okc.media Style Smooth Easing & Timing */
+    --ease-editorial: cubic-bezier(0.16, 1, 0.3, 1);
+    --ease-smooth: cubic-bezier(0.2, 0.7, 0.2, 1);
+  }
+
+  html {
+    scroll-behavior: smooth;
+    font-family: 'Plus Jakarta Sans', system-ui, -apple-system, sans-serif;
+    color: var(--color-text-light);
+    background-color: var(--color-bg-dark);
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+    text-rendering: optimizeLegibility;
+    font-weight: 400;
+  }
+
+  body {
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
+    overflow-x: hidden;
+    background-color: #0a0a0a;
+    color: #fafffa;
+    position: relative;
+    font-weight: 400;
+  }
+
+  /* Subtle Mineral Noise Grain Texture Overlay (okc.media / Luxury Editorial Atmosphere) */
+  body::before {
+    content: "";
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100vw;
+    height: 100vh;
+    pointer-events: none;
+    z-index: 9999;
+    opacity: 0.032;
+    background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noiseFilter'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.8' numOctaves='3' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noiseFilter)'/%3E%3C/svg%3E");
+    mix-blend-mode: overlay;
+  }
+
+  /* Monumental Broadsheet Typography with Automatic Balanced Line Breaking */
+  h1, h2, h3, h4, .font-serif {
+    font-family: 'Instrument Serif', 'Cormorant Garamond', Georgia, serif;
+    letter-spacing: -0.025em;
+    line-height: 1.02;
+    text-wrap: balance;
+    font-weight: 400;
+  }
+
+  p, li {
+    text-wrap: pretty;
+    letter-spacing: 0.01em;
+  }
+
+  .font-mono-micro {
+    font-family: 'Plus Jakarta Sans', sans-serif;
+    font-size: 11px;
+    letter-spacing: 0.15em;
+    text-transform: uppercase;
+    font-weight: 600;
+  }
+
+  /* Strict Sharp Editorial Rectangles */
+  * {
+    border-radius: 0px !important;
+  }
+
+  ::selection {
+    background-color: #f0dc28;
+    color: #0a0a0a;
+  }
+}
+
+@layer utilities {
+  .border-hairline {
+    border-width: 1px;
+    border-color: rgba(255, 255, 255, 0.12);
+  }
+  
+  .border-gold {
+    border-color: rgba(240, 220, 40, 0.4);
+  }
+
+  .text-huge {
+    font-size: clamp(2.5rem, 5vw, 4.5rem);
+    line-height: 1.0;
+    letter-spacing: -0.03em;
+  }
+
+  /* Architectural Card Elevation with Top Light Highlight */
+  .card-elevation {
+    background: linear-gradient(180deg, #161616 0%, #0e0e0e 100%);
+    border: 1px solid rgba(255, 255, 255, 0.12);
+    border-top: 1px solid rgba(255, 255, 255, 0.22);
+    box-shadow: 0 20px 40px -15px rgba(0, 0, 0, 0.7);
+  }
+
+  /* okc.media Style Smooth Image Hover Physics */
+  .okc-image-hover {
+    transition: transform 1s cubic-bezier(0.16, 1, 0.3, 1), filter 0.8s ease;
+  }
+  .okc-image-hover:hover {
+    transform: scale(1.04);
+    filter: brightness(1.05);
+  }
+
+  /* Ambient Glow Spotlights for Sections */
+  .bg-ambient-spotlight {
+    background: radial-gradient(circle at 50% 0%, rgba(240, 220, 40, 0.05) 0%, rgba(10, 10, 10, 0) 70%);
+  }
+
+  .bg-ambient-glow {
+    background: radial-gradient(circle at 80% 20%, rgba(240, 220, 40, 0.04) 0%, rgba(14, 14, 14, 0) 60%);
+  }
+}

@@ -1,0 +1,42 @@
+---
+// MobileStickyBar.astro - High-converting sticky quick-action bar for mobile devices
+---
+
+<div class="fixed bottom-0 left-0 right-0 z-40 block md:hidden bg-[#0c0c0c]/95 backdrop-blur-xl border-t border-white/15 px-3 py-2.5 shadow-2xl transition-transform duration-300 select-none" id="mobile-sticky-bar">
+  <div class="flex items-center justify-between gap-2 max-w-lg mx-auto">
+    <!-- Call Button -->
+    <a
+      href="tel:+492151391919"
+      class="flex-1 flex items-center justify-center gap-1.5 py-2.5 px-2 bg-[#181818] border border-white/15 text-white hover:text-[#f0dc28] text-[11px] font-mono font-semibold uppercase tracking-wider transition-colors"
+      aria-label="Telefonisch anrufen"
+    >
+      <svg class="w-4 h-4 text-[#f0dc28]" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 5a2 2 0 012-2h3.28a1 1 0 01.948.684l1.498 4.493a1 1 0 01-.502 1.21l-2.257 1.13a11.042 11.042 0 005.516 5.516l1.13-2.257a1 1 0 011.21-.502l4.493 1.498a1 1 0 01.684.949V19a2 2 0 01-2 2h-1C9.716 21 3 14.284 3 6V5z" />
+      </svg>
+      <span>Anrufen</span>
+    </a>
+
+    <!-- WhatsApp Button -->
+    <a
+      href="https://wa.me/491773919190"
+      target="_blank"
+      rel="noopener noreferrer"
+      class="flex-1 flex items-center justify-center gap-1.5 py-2.5 px-2 bg-[#181818] border border-[#f0dc28]/30 text-[#f0dc28] text-[11px] font-mono font-semibold uppercase tracking-wider hover:bg-[#f0dc28]/10 transition-colors"
+      aria-label="WhatsApp Nachricht senden"
+    >
+      <span class="text-sm">💬</span>
+      <span>WhatsApp</span>
+    </a>
+
+    <!-- Project Inquiry Button -->
+    <a
+      href="/kontakt"
+      class="flex-[1.4] flex items-center justify-center gap-1.5 py-2.5 px-3 bg-[#f0dc28] text-black text-[11px] font-bold uppercase tracking-wider hover:bg-white transition-colors shadow"
+    >
+      <span>Anfragen</span>
+      <span>→</span>
+    </a>
+  </div>
+</div>
+
+<div class="h-14 block md:hidden"></div>

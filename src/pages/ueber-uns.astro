@@ -1,0 +1,113 @@
+---
+import Layout from '../layouts/Layout.astro';
+import BadprofisTeaser from '../components/BadprofisTeaser.astro';
+import PartnerTrust from '../components/PartnerTrust.astro';
+import ProjectPlanner from '../components/ProjectPlanner.astro';
+---
+
+<Layout
+  title="Über uns & Meisterhandwerk | Dino Bruns Raumdesign Krefeld"
+  description="Lernen Sie Dino Bruns Raumdesign kennen. Meisterbetrieb für fugenlose Oberflächenveredelung, Kalkmarmorputz und textiles Raumdesign seit über 25 Jahren in Krefeld."
+>
+  <!-- Hero Section -->
+  <section class="relative bg-[#0a0a0a] text-white py-20 lg:py-28 border-b border-white/10 overflow-hidden">
+    <div class="max-w-7xl mx-auto px-4 sm:px-8">
+      <div class="grid grid-cols-1 lg:grid-cols-12 gap-12 items-center">
+        
+        <div class="lg:col-span-7 space-y-6">
+          <div class="text-xs uppercase tracking-[0.2em] font-medium text-[#f0dc28]">
+            Leidenschaft für Oberflächen & Detail
+          </div>
+
+          <h1 class="font-serif text-4xl sm:text-5xl lg:text-6xl font-normal leading-tight">
+            Handwerk ist Kunst, wenn man es mit Hingabe ausführt.
+          </h1>
+
+          <p class="text-base sm:text-lg text-neutral-300 font-normal leading-relaxed">
+            Seit mehr als einem Vierteljahrhundert steht der Name Dino Bruns für kompromisslose Qualität bei der Veredelung von Wänden, Böden und textilen Lebensräumen in Krefeld, Meerbusch und Düsseldorf.
+          </p>
+        </div>
+
+        <div class="lg:col-span-5">
+          <div class="border border-white/15 bg-black p-2 shadow-2xl aspect-[4/3]">
+            <img
+              src="/img/IMG_9699-512.jpg"
+              alt="Dino Bruns Meisterhandwerk & Raumdesign"
+              class="w-full h-full object-cover"
+              loading="eager"
+            />
+          </div>
+        </div>
+
+      </div>
+    </div>
+  </section>
+
+  <!-- Story & Values Section -->
+  <section class="py-20 bg-[#0e0e0e] text-white border-b border-white/10">
+    <div class="max-w-7xl mx-auto px-4 sm:px-8">
+      
+      <div class="grid grid-cols-1 lg:grid-cols-12 gap-12 items-center mb-20">
+        <div class="lg:col-span-6 space-y-6">
+          <span class="text-xs uppercase tracking-[0.2em] font-medium text-[#f0dc28]">
+            Meisterliche Philosophie
+          </span>
+          <h2 class="font-serif text-3xl sm:text-4xl font-normal text-white leading-tight">
+            Keine Massenware. Jede Wand ein haptisches Kunstwerk.
+          </h2>
+          <p class="text-sm sm:text-base text-neutral-300 leading-relaxed font-normal">
+            In einer von Standardlösungen geprägten Welt schaffen wir bleibende Werte. Wir glauben an die Kraft natürlicher, mineralischer Werkstoffe wie Marmor und Kalk sowie die Wärme erlesener Textilien führender europäischer Manufakturen.
+          </p>
+          <p class="text-sm sm:text-base text-neutral-300 leading-relaxed font-normal">
+            Als zertifizierter Meisterbetrieb legen wir höchsten Wert auf persönliche Beratung, absolute Sauberkeit auf der Baustelle und verbindliche Zeitpläne.
+          </p>
+        </div>
+
+        <!-- Values Cards (Straight Edges 0px) -->
+        <div class="lg:col-span-6 grid grid-cols-1 sm:grid-cols-2 gap-6">
+          <div class="p-8 bg-[#141414] border border-white/10 space-y-2">
+            <span class="text-[#f0dc28] font-serif text-3xl font-normal block">25+ Jahre</span>
+            <h4 class="font-serif text-lg font-normal text-white">Meistererfahrung</h4>
+            <p class="text-xs text-neutral-300 font-normal">
+              Tiefes Verständnis für Untergründe, Baubiologie, Bauphysik und Materialverbindungen.
+            </p>
+          </div>
+
+          <div class="p-8 bg-[#141414] border border-white/10 space-y-2">
+            <span class="text-[#f0dc28] font-serif text-3xl font-normal block">Frescolori®</span>
+            <h4 class="font-serif text-lg font-normal text-white">Zertifizierter Partner</h4>
+            <p class="text-xs text-neutral-300 font-normal">
+              Ständige Fortbildung und meisterliche Beherrschung aller italienischen Spachteltechniken.
+            </p>
+          </div>
+
+          <div class="p-8 bg-[#141414] border border-white/10 space-y-2">
+            <span class="text-[#f0dc28] font-serif text-3xl font-normal block">100%</span>
+            <h4 class="font-serif text-lg font-normal text-white">Staubschutz & Respekt</h4>
+            <p class="text-xs text-neutral-300 font-normal">
+              Sorgfältiges Abkleben, Luftreinigungs-Systeme und schonender Umgang mit Ihrem Wohnraum.
+            </p>
+          </div>
+
+          <div class="p-8 bg-[#141414] border border-white/10 space-y-2">
+            <span class="text-[#f0dc28] font-serif text-3xl font-normal block">Showroom</span>
+            <h4 class="font-serif text-lg font-normal text-white">Grotenburgstr. 106</h4>
+            <p class="text-xs text-neutral-300 font-normal">
+              Großformatige Original-Musterwände zum Anfassen und Begutachten bei Tageslicht in Krefeld.
+            </p>
+          </div>
+        </div>
+      </div>
+
+    </div>
+  </section>
+
+  <!-- Partner Badprofis Info -->
+  <BadprofisTeaser />
+
+  <!-- Partner Network -->
+  <PartnerTrust />
+
+  <!-- Project Planner Funnel -->
+  <ProjectPlanner />
+</Layout>

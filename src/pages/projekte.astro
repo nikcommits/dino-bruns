@@ -1,0 +1,460 @@
+---
+import Layout from '../layouts/Layout.astro';
+import ProjectPlanner from '../components/ProjectPlanner.astro';
+import GalleryLightbox from '../components/GalleryLightbox.astro';
+import galleryData from '../data/galleryData.json';
+
+// Category Definitions
+const categories = [
+  { id: 'alle', name: 'Alle Gewerke', count: 609, icon: '✦' },
+  { id: 'vorundnach', name: 'Vorher / Nachher', count: galleryData.vorundnach?.length || 76, icon: '⇄' },
+  { id: 'marmorputz', name: 'Kalkmarmorputz & Bäder', count: galleryData.marmorputz?.length || 112, icon: '◈' },
+  { id: 'betonboden', name: 'Betonböden', count: galleryData.betonboden?.length || 25, icon: '◼' },
+  { id: 'betonwand', name: 'Betonwände', count: galleryData.betonwand?.length || 36, icon: '◧' },
+  { id: 'fliesen', name: 'Fliesenbäder', count: galleryData.fliesen?.length || 38, icon: '▦' },
+  { id: 'innenausbau', name: 'Innenausbau & Licht', count: galleryData.innenausbau?.length || 54, icon: '▲' },
+  { id: 'bodenbelag', name: 'Bodenbeläge & Parkett', count: galleryData.bodenbelag?.length || 47, icon: '▤' },
+  { id: 'schiebetueren', name: 'Schiebetüren & Glas', count: galleryData.schiebetueren?.length || 27, icon: '▯' },
+  { id: 'vorhangsysteme', name: 'Vorhangsysteme', count: galleryData.vorhangsysteme?.length || 20, icon: '〰' },
+  { id: 'teppiche', name: 'Maßteppiche', count: galleryData.teppiche?.length || 28, icon: '▣' },
+  { id: 'sonnenschutz', name: 'Sicht- & Sonnenschutz', count: galleryData.sonnenschutz?.length || 65, icon: '☼' },
+  { id: 'dekorationen', name: 'Dekorationen & Moos', count: galleryData.dekorationen?.length || 57, icon: '✿' },
+  { id: 'bettwaesche', name: 'Bettwäsche', count: galleryData.bettwaesche?.length || 15, icon: '◇' },
+  { id: 'energiesparen', name: 'Wabenplissee', count: galleryData.energiesparen?.length || 7, icon: '⚡' },
+];
+
+// Highlight Showcase Projects
+const highlightProjects = [
+  {
+    title: 'Penthouse Meerbusch',
+    category: 'betonboden',
+    categoryLabel: 'Betonboden im Gießverfahren',
+    image: '/images/betonboden/IMG_9740-512.jpg',
+    location: 'Meerbusch',
+    area: '140 m²',
+    description: 'Fugenloser mineralischer Design-Betonboden im offenen Wohn-, Koch- und Essbereich. Handgespachtelte Wolkenstruktur in warmem Greige, nahtlos über Fußbodenheizung verlegt.',
+    tags: ['Fugenlos', 'Fußbodenheizung', 'Gießverfahren'],
+  },
+  {
+    title: 'Villa Krefeld Stadtwald',
+    category: 'marmorputz',
+    categoryLabel: 'Frescolori® Bad',
+    image: '/images/marmorputz/IMG_9752-512.jpg',
+    location: 'Krefeld',
+    area: '24 m²',
+    description: 'Vollständige Wandveredelung mit Frescolori® Kalkmarmorputz in Sand/Greige. Bodengleiche Walk-In Dusche mit beleuchteter Nische und freistehender Wanne.',
+    tags: ['Frescolori®', 'Wasserdicht', 'Kalkmarmor'],
+  },
+  {
+    title: 'Designer-Apartment Düsseldorf',
+    category: 'vorhangsysteme',
+    categoryLabel: 'Textil & interstil Wellenvorhänge',
+    image: '/images/vorhangsysteme/interstil-milieu-f1-wandsystem-512.jpg',
+    location: 'Düsseldorf Oberkassel',
+    area: '90 m²',
+    description: 'Harmonisches Zusammenspiel aus deckenhohen interstil Wellenvorhängen, JAB Anstoetz Maßteppich und dezenter mineralischer Akzentwand.',
+    tags: ['interstil', 'JAB Anstoetz', 'Akustik'],
+  },
+  {
+    title: 'Repräsentative Kanzlei & Foyer',
+    category: 'betonwand',
+    categoryLabel: 'Sichtbetonwand & Wachs',
+    image: '/images/betonwand/betonwand-01-512n.jpg',
+    location: 'Duisburg / Rheinland',
+    area: '210 m²',
+    description: 'Freitragende Treppe vor handgefertigter Sichtbetonwand mit mineralischer Versiegelung, Wachsbeschichtung und charakteristischen Lunkern.',
+    tags: ['Sichtbeton', 'Loft-Ästhetik', 'Kanzlei'],
+  },
+  {
+    title: 'Komplettbad-Sanierung mit 3D-Planung',
+    category: 'fliesen',
+    categoryLabel: 'Badsanierung & Fliesenstudio',
+    image: '/images/fliesen/IMG_9636-512.jpg',
+    location: 'Krefeld',
+    area: '18 m²',
+    description: 'Badsanierung aus Meisterhand: Großformatkeramik in Kombination mit wandbündigen Armaturen, LED-Vouten und maßgefertigtem Waschtisch.',
+    tags: ['Komplettbad', 'Fliesenstudio', '3D-Planung'],
+  },
+  {
+    title: 'Villenausbau & Akustikdecke',
+    category: 'innenausbau',
+    categoryLabel: 'Innenausbau & Trockenbau',
+    image: '/images/innenausbau/IMG_5529-512.jpg',
+    location: 'Krefeld Bockum',
+    area: '320 m²',
+    description: 'Ganzheitlicher Innenausbau mit abgehängten Akustikdecken, indirekten Lichtvouten, Orac Decor Stuckleisten und maßgeschreinerten Türelementen.',
+    tags: ['Trockenbau', 'Lichtvouten', 'Stuck'],
+  },
+];
+
+// Generate Vorher/Nachher Pairs
+const vorundnachFiles = galleryData.vorundnach || [];
+const vnPairs = [];
+for (let i = 0; i < vorundnachFiles.length - 1; i += 2) {
+  vnPairs.push({
+    before: vorundnachFiles[i],
+    after: vorundnachFiles[i + 1],
+    title: `Sanierungsbeispiel #${Math.floor(i / 2) + 1}`,
+  });
+}
+---
+
+<Layout
+  title="Realisierte Projekte & Fotogalerien | Dino Bruns Raumdesign Krefeld"
+  description="Entdecken Sie über 600 originale Projektfotos von Dino Bruns Raumdesign: Fugenlose Betonböden, Frescolori® Bäder, Vorher-Nachher Sanierungen, Innenausbau und textile Raumgestaltung."
+>
+  <!-- Hero Section -->
+  <section class="relative bg-[#0a0a0a] text-white py-20 lg:py-28 border-b border-white/10 overflow-hidden bg-ambient-spotlight">
+    <div class="max-w-7xl mx-auto px-4 sm:px-8">
+      <div class="max-w-3xl space-y-6">
+        <div class="inline-flex items-center gap-2">
+          <span class="w-2 h-2 bg-[#f0dc28]"></span>
+          <span class="text-xs uppercase tracking-[0.2em] font-semibold text-[#f0dc28]">
+            Echte Referenzen & Fotogalerien (609 Originalfotos)
+          </span>
+        </div>
+
+        <h1 class="font-serif text-4xl sm:text-5xl lg:text-6xl font-normal leading-tight text-white">
+          Handwerkliche Meisterschaft in realisierten Objekten.
+        </h1>
+
+        <p class="text-base sm:text-lg text-neutral-300 font-normal leading-relaxed">
+          Jedes Projekt ist ein handwerkliches Unikat. Entdecken Sie hier das gesamte Archiv unserer realisierten Arbeiten in Krefeld, Meerbusch, Düsseldorf und dem Rheinland – von 1:1 Vorher/Nachher-Sanierungen bis hin zu maßgeschneiderten Villen- und Penthouseausbauten.
+        </p>
+      </div>
+    </div>
+  </section>
+
+  <!-- Interactive Filter Tabs -->
+  <section class="sticky top-16 z-30 bg-[#121212]/95 backdrop-blur-md border-b border-white/10 py-4 shadow-xl">
+    <div class="max-w-7xl mx-auto px-4 sm:px-8">
+      <div class="flex items-center gap-2 overflow-x-auto pb-1 scrollbar-thin scrollbar-thumb-white/20" id="filter-tabs">
+        {categories.map((cat) => (
+          <button
+            type="button"
+            data-filter={cat.id}
+            class={`px-4 py-2 text-xs font-semibold uppercase tracking-wider whitespace-nowrap transition-all flex items-center gap-2 border cursor-pointer ${
+              cat.id === 'alle'
+                ? 'bg-[#f0dc28] text-black border-[#f0dc28] tab-active'
+                : 'bg-black/50 text-neutral-300 border-white/15 hover:border-[#f0dc28] hover:text-white'
+            }`}
+          >
+            <span class="opacity-70">{cat.icon}</span>
+            <span>{cat.name}</span>
+            <span class="text-[10px] px-1.5 py-0.5 rounded-none bg-black/40 text-current font-mono">
+              {cat.count}
+            </span>
+          </button>
+        ))}
+      </div>
+    </div>
+  </section>
+
+  <!-- Main Content Area -->
+  <section class="py-16 bg-[#0e0e0e] text-white border-b border-white/10 min-h-screen">
+    <div class="max-w-7xl mx-auto px-4 sm:px-8 space-y-20">
+      
+      <!-- SECTION 1: Highlight Case Studies (Visible when "alle" is active) -->
+      <div id="highlight-section" class="category-block" data-category="alle">
+        <div class="flex items-center justify-between mb-8 pb-4 border-b border-white/10">
+          <div>
+            <span class="text-xs uppercase tracking-widest text-[#f0dc28] font-semibold block">Ausgewählte Arbeiten</span>
+            <h2 class="font-serif text-2xl sm:text-3xl text-white">Meisterprojekte im Detail</h2>
+          </div>
+          <span class="text-xs font-mono text-neutral-400">6 Highlight-Objekte</span>
+        </div>
+
+        <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+          {highlightProjects.map((p) => (
+            <div class="card-elevation flex flex-col justify-between group hover:border-[#f0dc28]/60 transition-all duration-300">
+              <div>
+                <div class="relative h-64 overflow-hidden border-b border-white/10 bg-black cursor-pointer"
+                  data-open-gallery={p.category}
+                  data-gallery-title={p.title}
+                  data-gallery-images={JSON.stringify(galleryData[p.category] || [p.image])}
+                  data-start-index="0"
+                >
+                  <img
+                    src={p.image}
+                    alt={p.title}
+                    class="w-full h-full object-cover okc-image-hover"
+                    loading="lazy"
+                  />
+                  <div class="absolute top-0 left-0 bg-[#0a0a0a]/90 backdrop-blur-sm text-white px-3 py-1.5 text-[10px] uppercase tracking-widest border-r border-b border-white/10 font-mono">
+                    {p.categoryLabel}
+                  </div>
+                  <div class="absolute bottom-0 right-0 bg-black/85 backdrop-blur-sm text-white px-2.5 py-1 text-[11px] border-l border-t border-white/10 font-mono text-[#f0dc28]">
+                    {p.location} • {p.area}
+                  </div>
+                </div>
+
+                <div class="p-6 sm:p-8 space-y-3">
+                  <h3 class="font-serif text-2xl font-normal text-white group-hover:text-[#f0dc28] transition-colors">
+                    {p.title}
+                  </h3>
+
+                  <p class="text-xs text-neutral-300 leading-relaxed font-normal">
+                    {p.description}
+                  </p>
+                </div>
+              </div>
+
+              <div class="p-6 sm:p-8 pt-0">
+                <div class="border-t border-white/10 pt-4 flex flex-wrap gap-2 mb-4">
+                  {p.tags.map((tag) => (
+                    <span class="text-[10px] uppercase tracking-wider px-2 py-0.5 bg-black/60 text-neutral-300 border border-white/10 font-mono">
+                      {tag}
+                    </span>
+                  ))}
+                </div>
+
+                <button
+                  type="button"
+                  data-open-gallery={p.category}
+                  data-gallery-title={p.title}
+                  data-gallery-images={JSON.stringify(galleryData[p.category] || [p.image])}
+                  data-start-index="0"
+                  class="w-full py-2.5 px-3 bg-[#181818] hover:bg-[#f0dc28] text-white hover:text-black border border-white/15 text-xs font-semibold uppercase tracking-wider transition-all flex items-center justify-center gap-2 cursor-pointer"
+                >
+                  <svg class="w-3.5 h-3.5" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 16l4.586-4.586a2 2 0 012.828 0L16 16m-2-2l1.586-1.586a2 2 0 012.828 0L20 14m-6-6h.01M6 20h12a2 2 0 002-2V6a2 2 0 00-2-2H6a2 2 0 00-2 2v12a2 2 0 002 2z" />
+                  </svg>
+                  <span>Zugehörige Fotogalerie öffnen</span>
+                </button>
+              </div>
+
+            </div>
+          ))}
+        </div>
+      </div>
+
+      <!-- SECTION 2: Vorher / Nachher Transformationsgalerie -->
+      <div id="vorundnach-section" class="category-block" data-category="vorundnach">
+        <div class="flex flex-col sm:flex-row sm:items-end justify-between mb-8 pb-4 border-b border-white/10 gap-4">
+          <div>
+            <div class="inline-flex items-center gap-2 mb-1">
+              <span class="w-2 h-2 bg-[#f0dc28]"></span>
+              <span class="text-xs uppercase tracking-widest text-[#f0dc28] font-semibold">
+                Sanierungs-Bilderbogen
+              </span>
+            </div>
+            <h2 class="font-serif text-3xl sm:text-4xl text-white">
+              Vorher & Nachher: Beeindruckende Verwandlungen
+            </h2>
+          </div>
+          <button
+            type="button"
+            data-open-gallery="vorundnach"
+            data-gallery-title="Vorher / Nachher – Vollständiger Bilderbogen"
+            data-gallery-images={JSON.stringify(vorundnachFiles)}
+            data-start-index="0"
+            class="px-5 py-2.5 bg-[#f0dc28] text-black font-semibold uppercase text-xs tracking-wider hover:bg-white transition-all cursor-pointer shrink-0"
+          >
+            Alle 76 Vorher/Nachher-Fotos als Galerie öffnen
+          </button>
+        </div>
+
+        <p class="text-sm text-neutral-300 max-w-3xl mb-8 leading-relaxed">
+          Bei den hier abgebildeten Projekten zeigen wir, wie aus in die Jahre gekommenen Bestandsräumen durch intelligente Planung, Abriss, Trockenbau, hochwertige Fliesen- oder Spachteltechnik und maßgefertigte Raumausstattung moderne Wohlfühloasen entstehen.
+        </p>
+
+        <!-- Vorher-Nachher Grid (Pairs) -->
+        <div class="grid grid-cols-1 md:grid-cols-2 gap-8">
+          {vnPairs.map((pair, pIdx) => (
+            <div class="card-elevation p-4 sm:p-6 space-y-4 border border-white/10 group hover:border-[#f0dc28]/60 transition-all">
+              <div class="flex items-center justify-between text-xs font-mono text-neutral-400 pb-2 border-b border-white/10">
+                <span class="text-white font-semibold">{pair.title}</span>
+                <span class="text-[#f0dc28]">Vergleichs-Paar #{pIdx + 1}</span>
+              </div>
+
+              <div class="grid grid-cols-2 gap-3">
+                <!-- Vorher -->
+                <div
+                  class="relative aspect-[4/3] overflow-hidden border border-white/15 cursor-pointer group/before"
+                  data-open-gallery="vorundnach"
+                  data-gallery-title={`${pair.title} (Vorher)`}
+                  data-gallery-images={JSON.stringify(vorundnachFiles)}
+                  data-start-index={pIdx * 2}
+                >
+                  <img
+                    src={pair.before}
+                    alt={`${pair.title} Vorher`}
+                    class="w-full h-full object-cover group-hover/before:scale-105 transition-transform duration-300 grayscale"
+                    loading="lazy"
+                  />
+                  <div class="absolute top-2 left-2 bg-red-900/90 text-white text-[9px] uppercase tracking-widest px-2 py-0.5 font-mono font-bold border border-red-500/40">
+                    Vorher
+                  </div>
+                </div>
+
+                <!-- Nachher -->
+                <div
+                  class="relative aspect-[4/3] overflow-hidden border border-white/15 cursor-pointer group/after"
+                  data-open-gallery="vorundnach"
+                  data-gallery-title={`${pair.title} (Nachher)`}
+                  data-gallery-images={JSON.stringify(vorundnachFiles)}
+                  data-start-index={pIdx * 2 + 1}
+                >
+                  <img
+                    src={pair.after}
+                    alt={`${pair.title} Nachher`}
+                    class="w-full h-full object-cover group-hover/after:scale-105 transition-transform duration-300"
+                    loading="lazy"
+                  />
+                  <div class="absolute top-2 left-2 bg-emerald-800/90 text-white text-[9px] uppercase tracking-widest px-2 py-0.5 font-mono font-bold border border-emerald-400/40">
+                    Nachher
+                  </div>
+                </div>
+              </div>
+            </div>
+          ))}
+        </div>
+      </div>
+
+      <!-- SECTION 3: Detailed Image Grids for every other category -->
+      {categories.filter(c => c.id !== 'alle' && c.id !== 'vorundnach').map((cat) => {
+        const images = galleryData[cat.id] || [];
+        return (
+          <div id={`${cat.id}-section`} class="category-block" data-category={cat.id}>
+            <div class="flex flex-col sm:flex-row sm:items-end justify-between mb-8 pb-4 border-b border-white/10 gap-4">
+              <div>
+                <span class="text-xs uppercase tracking-widest text-[#f0dc28] font-semibold block">
+                  Original-Fotoarchiv
+                </span>
+                <h2 class="font-serif text-3xl text-white">
+                  {cat.name} ({images.length} Fotos)
+                </h2>
+              </div>
+              <button
+                type="button"
+                data-open-gallery={cat.id}
+                data-gallery-title={`${cat.name} – Fotogalerie`}
+                data-gallery-images={JSON.stringify(images)}
+                data-start-index="0"
+                class="px-5 py-2.5 bg-[#1c1c1c] hover:bg-[#f0dc28] text-white hover:text-black border border-white/20 text-xs font-semibold uppercase tracking-wider transition-all cursor-pointer shrink-0 flex items-center gap-2"
+              >
+                <svg class="w-4 h-4" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                  <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 16l4.586-4.586a2 2 0 012.828 0L16 16m-2-2l1.586-1.586a2 2 0 012.828 0L20 14m-6-6h.01M6 20h12a2 2 0 002-2V6a2 2 0 00-2-2H6a2 2 0 00-2 2v12a2 2 0 002 2z" />
+                </svg>
+                <span>Vollbild-Galerie öffnen</span>
+              </button>
+            </div>
+
+            <div class="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-6 gap-3">
+              {images.map((imgSrc, idx) => (
+                <div
+                  class="relative aspect-[4/3] bg-black overflow-hidden border border-white/10 cursor-pointer hover:border-[#f0dc28] transition-all group/tile"
+                  data-open-gallery={cat.id}
+                  data-gallery-title={`${cat.name} (Foto ${idx + 1} von ${images.length})`}
+                  data-gallery-images={JSON.stringify(images)}
+                  data-start-index={idx}
+                  title={`Foto ${idx + 1} vergrößern`}
+                >
+                  <img
+                    src={imgSrc}
+                    alt={`${cat.name} Projekt ${idx + 1}`}
+                    class="w-full h-full object-cover group-hover/tile:scale-110 transition-transform duration-300"
+                    loading="lazy"
+                  />
+                  <div class="absolute inset-0 bg-black/40 opacity-0 group-hover/tile:opacity-100 transition-opacity flex items-center justify-center">
+                    <span class="text-white text-xs font-mono bg-black/70 px-2 py-1 border border-white/20">
+                      🔍 #{idx + 1}
+                    </span>
+                  </div>
+                </div>
+              ))}
+            </div>
+          </div>
+        );
+      })}
+
+      <!-- Architect & Collaboration CTA -->
+      <div class="p-8 md:p-12 border border-white/15 bg-[#121212] flex flex-col md:flex-row items-center justify-between gap-8">
+        <div class="space-y-2 max-w-xl">
+          <span class="text-xs uppercase tracking-[0.2em] font-medium text-[#f0dc28]">
+            Für Bauherren, Architekten & Planer
+          </span>
+          <h3 class="font-serif text-2xl font-normal text-white">
+            Haben Sie ein konkretes Projekt im Blick?
+          </h3>
+          <p class="text-xs text-neutral-300 font-normal leading-relaxed">
+            Wir beraten Sie gerne unverbindlich vor Ort oder in unserem Showroom in Krefeld. Wir stellen Muster bereit und erstellen maßgeschneiderte Konzepte.
+          </p>
+        </div>
+
+        <a
+          href="/kontakt"
+          class="shrink-0 px-8 py-4 text-xs font-semibold uppercase tracking-widest text-black bg-[#f0dc28] hover:bg-white transition-all shadow cursor-pointer"
+        >
+          Unverbindliches Erstgespräch anfragen →
+        </a>
+      </div>
+
+    </div>
+  </section>
+
+  <!-- Project Planner Funnel -->
+  <ProjectPlanner />
+
+  <!-- Global Fullscreen Lightbox for all Photo Galleries -->
+  <GalleryLightbox />
+</Layout>
+
+<script>
+  // Filter Tabs Logic with URL Param Support
+  const filterButtons = document.querySelectorAll('#filter-tabs button[data-filter]');
+  const categoryBlocks = document.querySelectorAll('.category-block');
+
+  function setFilter(filterId: string) {
+    // Update active tab button style
+    filterButtons.forEach((btn) => {
+      const bFilter = btn.getAttribute('data-filter');
+      if (bFilter === filterId) {
+        btn.className = 'px-4 py-2 text-xs font-semibold uppercase tracking-wider whitespace-nowrap transition-all flex items-center gap-2 border cursor-pointer bg-[#f0dc28] text-black border-[#f0dc28] tab-active';
+      } else {
+        btn.className = 'px-4 py-2 text-xs font-semibold uppercase tracking-wider whitespace-nowrap transition-all flex items-center gap-2 border cursor-pointer bg-black/50 text-neutral-300 border-white/15 hover:border-[#f0dc28] hover:text-white';
+      }
+    });
+
+    // Show/Hide category blocks
+    categoryBlocks.forEach((block) => {
+      const blockCat = block.getAttribute('data-category');
+      if (filterId === 'alle') {
+        block.classList.remove('hidden');
+      } else {
+        if (blockCat === filterId) {
+          block.classList.remove('hidden');
+        } else {
+          block.classList.add('hidden');
+        }
+      }
+    });
+
+    // Update URL without page refresh
+    const url = new URL(window.location.href);
+    if (filterId === 'alle') {
+      url.searchParams.delete('kategorie');
+    } else {
+      url.searchParams.set('kategorie', filterId);
+    }
+    window.history.replaceState({}, '', url);
+  }
+
+  // Click listeners for tab buttons
+  filterButtons.forEach((btn) => {
+    btn.addEventListener('click', () => {
+      const filterId = btn.getAttribute('data-filter') || 'alle';
+      setFilter(filterId);
+    });
+  });
+
+  // On initial page load: check URL query parameter
+  const initialUrlParams = new URLSearchParams(window.location.search);
+  const initialCategory = initialUrlParams.get('kategorie') || initialUrlParams.get('filter');
+  if (initialCategory) {
+    const matchingBtn = document.querySelector(`#filter-tabs button[data-filter="${initialCategory}"]`);
+    if (matchingBtn) {
+      setFilter(initialCategory);
+    }
+  }
+</script>

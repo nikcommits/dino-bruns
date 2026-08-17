@@ -1,0 +1,194 @@
+---
+import Layout from '../layouts/Layout.astro';
+import BadprofisTeaser from '../components/BadprofisTeaser.astro';
+import ProjectPlanner from '../components/ProjectPlanner.astro';
+import GalleryLightbox from '../components/GalleryLightbox.astro';
+import galleryData from '../data/galleryData.json';
+
+const marmorImages = galleryData.marmorputz || [];
+
+const faqs = [
+  {
+    q: 'Ist Frescolori® Kalkmarmorputz im direkten Duschbereich wirklich 100% wasserdicht?',
+    a: 'Ja. Durch ein speziell zertifiziertes Mehrschicht-Verfahren mit hochwirksamer Porenversiegelung ist die Oberfläche dauerhaft wasser- und seifenresistent. Sie ist ideal für bodengleiche Duschen und anspruchsvolle Nasszellen.',
+  },
+  {
+    q: 'Wie wirkt sich Kalkmarmorputz auf das Raumklima und Schimmel aus?',
+    a: 'Kalkmarmorputz besteht aus reinem Marmor und gelöschtem Kalk. Der natürlich hohe pH-Wert wirkt stark antibakteriell und verhindert Schimmelbildung von vornherein. Zudem nimmt das Material überschüssige Feuchtigkeit auf und gibt sie sanft wieder ab.',
+  },
+  {
+    q: 'Welche Farb- und Strukturvarianten gibt es?',
+    a: 'Frescolori® bietet über 100.000 Farbnuancen sowie verschiedene Haptiken – von samtig-glatt mit dezentem Seidenschimmer bis hin zu markanter Naturstein- und Schieferoptik.',
+  },
+  {
+    q: 'Was ist der Unterschied zwischen Kalkmarmorputz und herkömmlichem Malerputz?',
+    a: 'Herkömmliche Dispersionsputze enthalten oft Kunstharze und Weichmacher. Kalkmarmorputz ist ein reines Naturprodukt, das durch die Kristallisation von Kalkstein aushärtet und über Jahrzehnte hinweg seine mineralische Brillanz behält.',
+  },
+];
+
+const faqSchema = {
+  '@context': 'https://schema.org',
+  '@type': 'FAQPage',
+  mainEntity: faqs.map((f) => ({
+    '@type': 'Question',
+    name: f.q,
+    acceptedAnswer: {
+      '@type': 'Answer',
+      text: f.a,
+    },
+  })),
+};
+---
+
+<Layout
+  title="Frescolori® Kalkmarmorputz Krefeld & Düsseldorf | Dino Bruns Raumdesign"
+  description="Zertifizierter Frescolori® Fachbetrieb in Krefeld. Fugenlose Bäder, exklusiver Kalkmarmorputz, natürliches Raumklima & wasserdichte Wandkunst im Rheinland."
+  schema={faqSchema}
+>
+  <!-- Hero Section -->
+  <section class="relative bg-[#0a0a0a] text-white py-20 lg:py-28 border-b border-white/10 overflow-hidden bg-ambient-spotlight">
+    <div class="max-w-7xl mx-auto px-4 sm:px-8">
+      <div class="grid grid-cols-1 lg:grid-cols-12 gap-12 items-center">
+        
+        <div class="lg:col-span-7 space-y-6">
+          <div class="text-xs uppercase tracking-[0.2em] font-medium text-[#f0dc28]">
+            Zertifizierter Frescolori® Meisterbetrieb
+          </div>
+
+          <h1 class="font-serif text-4xl sm:text-5xl lg:text-6xl font-normal leading-tight">
+            Edler Kalkmarmorputz & fugenlose Bäder.
+          </h1>
+
+          <p class="text-base sm:text-lg text-neutral-300 font-normal leading-relaxed">
+            Italienische Wandveredelung aus feinstem Carrara-Marmor und Naturkalk. Vollkommen fugenlos, feuchtigkeitsregulierend und dauerhaft wasserdicht für Ihr privates Luxus-Spa. Entdecken Sie über 110 realisierte Bäder und Duschbereiche.
+          </p>
+
+          <div class="pt-4 flex flex-col sm:flex-row gap-4">
+            <button
+              type="button"
+              data-open-gallery="marmorputz"
+              data-gallery-title="Frescolori® Kalkmarmorputz – Gesamtes Badarchiv"
+              data-gallery-images={JSON.stringify(marmorImages)}
+              data-start-index="0"
+              class="inline-flex items-center justify-center px-8 py-4 text-xs font-semibold uppercase tracking-widest text-black bg-[#f0dc28] hover:bg-white transition-all shadow cursor-pointer"
+            >
+              Alle 112 Badprojekte ansehen →
+            </button>
+            <a
+              href="/kontakt"
+              class="inline-flex items-center justify-center px-8 py-4 text-xs font-medium tracking-widest text-white border border-white/20 hover:border-[#f0dc28] hover:text-[#f0dc28] transition-all bg-[#121212]"
+            >
+              Muster im Atelier ansehen
+            </a>
+          </div>
+        </div>
+
+        <div class="lg:col-span-5">
+          <div class="border border-white/15 bg-black p-2 shadow-2xl aspect-[4/3] relative group cursor-pointer"
+            data-open-gallery="marmorputz"
+            data-gallery-title="Frescolori Walk-In Dusche & Bad Dino Bruns"
+            data-gallery-images={JSON.stringify(marmorImages)}
+            data-start-index="0"
+          >
+            <img
+              src="/images/marmorputz/IMG_9752-512.jpg"
+              alt="Frescolori Walk-In Dusche & Bad Dino Bruns"
+              class="w-full h-full object-cover okc-image-hover"
+              loading="eager"
+            />
+            <div class="absolute bottom-4 left-4 bg-black/80 backdrop-blur-md px-3 py-1.5 border border-white/15 text-[11px] text-[#f0dc28] font-mono">
+              112 Originalfotos verfügbar
+            </div>
+          </div>
+        </div>
+
+      </div>
+    </div>
+  </section>
+
+  <!-- Real Photo Details Section -->
+  <section class="py-20 bg-[#0e0e0e] text-white border-b border-white/10">
+    <div class="max-w-7xl mx-auto px-4 sm:px-8">
+      <div class="flex flex-col sm:flex-row justify-between items-start sm:items-end mb-16 pb-6 border-b border-white/10 gap-4">
+        <div class="space-y-2">
+          <span class="text-xs uppercase tracking-[0.2em] font-medium text-[#f0dc28]">
+            Atmosphäre & Haptik
+          </span>
+          <h2 class="font-serif text-3xl sm:text-4xl font-normal text-white">
+            Fugenlose Duschbereiche & Wandunikate ({marmorImages.length} Fotos).
+          </h2>
+        </div>
+        <button
+          type="button"
+          data-open-gallery="marmorputz"
+          data-gallery-title="Frescolori® Kalkmarmorputz Galerie"
+          data-gallery-images={JSON.stringify(marmorImages)}
+          data-start-index="0"
+          class="px-6 py-3 bg-[#f0dc28] text-black font-semibold text-xs uppercase tracking-wider hover:bg-white transition-all cursor-pointer shrink-0"
+        >
+          Alle {marmorImages.length} Fotos als Galerie öffnen
+        </button>
+      </div>
+
+      <div class="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-6 gap-3">
+        {marmorImages.map((src, idx) => (
+          <div
+            class="relative aspect-[4/3] bg-black overflow-hidden border border-white/10 cursor-pointer hover:border-[#f0dc28] transition-all group"
+            data-open-gallery="marmorputz"
+            data-gallery-title={`Frescolori® Bad #${idx + 1}`}
+            data-gallery-images={JSON.stringify(marmorImages)}
+            data-start-index={idx}
+          >
+            <img
+              src={src}
+              alt={`Frescolori Bad Projekt ${idx + 1}`}
+              class="w-full h-full object-cover group-hover:scale-110 transition-transform duration-300"
+              loading="lazy"
+            />
+            <div class="absolute inset-0 bg-black/40 opacity-0 group-hover:opacity-100 transition-opacity flex items-center justify-center">
+              <span class="text-white text-xs font-mono bg-black/80 px-2 py-1 border border-white/20">
+                🔍 #{idx + 1}
+              </span>
+            </div>
+          </div>
+        ))}
+      </div>
+    </div>
+  </section>
+
+  <!-- Badprofis Banner -->
+  <BadprofisTeaser />
+
+  <!-- FAQ Section (GEO / AI SEO) -->
+  <section class="py-20 bg-[#0e0e0e] text-white border-b border-white/10">
+    <div class="max-w-4xl mx-auto px-4 sm:px-8">
+      <div class="text-center max-w-2xl mx-auto mb-16 space-y-3">
+        <span class="text-xs uppercase tracking-[0.2em] font-medium text-[#f0dc28]">
+          Häufige Fragen
+        </span>
+        <h2 class="font-serif text-3xl sm:text-4xl font-normal text-white">
+          Alles rund um Frescolori® Kalkmarmorputz.
+        </h2>
+      </div>
+
+      <div class="space-y-4">
+        {faqs.map((faq) => (
+          <div class="p-6 bg-[#141414] border border-white/10">
+            <h3 class="font-serif text-lg font-medium text-white mb-2">
+              {faq.q}
+            </h3>
+            <p class="text-sm text-neutral-300 font-normal leading-relaxed">
+              {faq.a}
+            </p>
+          </div>
+        ))}
+      </div>
+    </div>
+  </section>
+
+  <!-- Project Planner Funnel -->
+  <ProjectPlanner />
+
+  <!-- Global Lightbox -->
+  <GalleryLightbox />
+</Layout>

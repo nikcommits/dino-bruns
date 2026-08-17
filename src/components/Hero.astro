@@ -1,0 +1,157 @@
+---
+interface Props {
+  title?: string;
+  subtitle?: string;
+}
+
+const {
+  title = 'Kalkmarmorputz & fugenlose Oberflächen.',
+  subtitle = 'Räume, in denen Sie sich zuhause fühlen, sich regenerieren und wohlfühlen können. Kalkmarmorputz von Frescolori® wird nach traditionell italienischem Vorbild aus natürlichen Rohstoffen entwickelt – 100%ige Dichtigkeit im Nasszellenbereich, meisterhafte Haptik und langlebige Eleganz.',
+} = Astro.props;
+
+const galleryImages = [
+  { src: '/img/IMG_5479-512.jpg', title: 'Frescolori® Walk-In Dusche', loc: 'Krefeld' },
+  { src: '/img/IMG_2570-512.jpg', title: 'Waschtisch auf Hobelbank', loc: 'Meerbusch' },
+  { src: '/img/IMG_7633-512.jpg', title: 'Walk-In Dusche mit Sunshower', loc: 'Düsseldorf' },
+  { src: '/img/IMG_5906-512.jpg', title: 'Fugenloses Bad mit Lichtvoute', loc: 'Krefeld' },
+  { src: '/img/betonwand-01-512n.jpg', title: 'Sichtbetonwand & Kragarmtreppe', loc: 'Duisburg' },
+  { src: '/img/IMG_5909-512.jpg', title: 'Fugenloser Design-Betonboden', loc: 'Meerbusch' },
+  { src: '/img/interstil-milieu-f1-deckensystem-2-512.jpg', title: 'interstil Vorhangsystem', loc: 'Düsseldorf' },
+  { src: '/img/IMG_3888-512.jpg', title: 'Doppelwaschtisch & Glasdusche', loc: 'Moers' },
+];
+---
+
+<section class="bg-[#0a0a0a] bg-ambient-spotlight text-white pt-8 pb-20 border-b border-white/10 overflow-hidden relative">
+  
+  <!-- 1. Gliding Filmstrip Marquee with Smooth Animation & Hover Pause -->
+  <div class="relative w-full overflow-hidden border-y border-white/10 bg-[#121212] mb-16 py-2">
+    <div class="marquee-track flex gap-2 w-max hover:[animation-play-state:paused]">
+      
+      <!-- Sequence 1 -->
+      {galleryImages.map((img) => (
+        <div class="relative group h-72 sm:h-80 md:h-96 w-64 sm:w-80 md:w-96 overflow-hidden bg-black shrink-0 border border-white/10 transition-transform duration-500 hover:scale-[1.02] cursor-pointer">
+          <img
+            src={img.src}
+            alt={img.title}
+            class="w-full h-full object-cover okc-image-hover"
+            loading="eager"
+          />
+          <div class="absolute inset-0 bg-gradient-to-t from-black/80 via-transparent to-black/20 opacity-80 group-hover:opacity-40 transition-opacity"></div>
+          <div class="absolute bottom-3 left-3 right-3 flex justify-between items-end text-[11px] uppercase tracking-[0.15em] text-white">
+            <span class="font-medium text-white">{img.title}</span>
+            <span class="text-[#f0dc28] font-mono">{img.loc}</span>
+          </div>
+        </div>
+      ))}
+
+      <!-- Sequence 2 (Infinite Duplicate) -->
+      {galleryImages.map((img) => (
+        <div class="relative group h-72 sm:h-80 md:h-96 w-64 sm:w-80 md:w-96 overflow-hidden bg-black shrink-0 border border-white/10 transition-transform duration-500 hover:scale-[1.02] cursor-pointer">
+          <img
+            src={img.src}
+            alt={img.title}
+            class="w-full h-full object-cover okc-image-hover"
+            loading="eager"
+          />
+          <div class="absolute inset-0 bg-gradient-to-t from-black/80 via-transparent to-black/20 opacity-80 group-hover:opacity-40 transition-opacity"></div>
+          <div class="absolute bottom-3 left-3 right-3 flex justify-between items-end text-[11px] uppercase tracking-[0.15em] text-white">
+            <span class="font-medium text-white">{img.title}</span>
+            <span class="text-[#f0dc28] font-mono">{img.loc}</span>
+          </div>
+        </div>
+      ))}
+    </div>
+  </div>
+
+  <!-- 2. Monumental Editorial Typography (Refero 1a519123 Broadsheet Style) -->
+  <div class="max-w-7xl mx-auto px-4 sm:px-8">
+    <div class="grid grid-cols-1 lg:grid-cols-12 gap-12 items-start">
+      
+      <!-- Left Column: Title & Mission -->
+      <div class="lg:col-span-8 space-y-8">
+        <div class="inline-flex items-center gap-3">
+          <span class="w-2 h-2 bg-[#f0dc28]"></span>
+          <span class="text-[11px] uppercase tracking-[0.2em] font-semibold text-[#f0dc28]">
+            Raumausstatter Dino Bruns • Krefeld
+          </span>
+        </div>
+
+        <h1 class="text-3xl sm:text-5xl lg:text-[3.5rem] xl:text-[4.25rem] font-serif text-white font-normal leading-[1.02] tracking-tight gsap-reveal-text">
+          {title}
+        </h1>
+
+        <p class="text-base sm:text-lg text-neutral-300 font-normal leading-relaxed max-w-2xl gsap-reveal-text">
+          {subtitle}
+        </p>
+
+        <!-- Sharp Rectangular Action Buttons (Refero Style: 4px/0px, no pills) -->
+        <div class="pt-4 flex flex-col sm:flex-row items-stretch sm:items-center gap-4">
+          <a
+            href="/kontakt"
+            class="inline-flex items-center justify-center px-8 py-4 text-[11px] font-bold uppercase tracking-[0.15em] text-black bg-[#f0dc28] hover:bg-white transition-all duration-200 shadow"
+          >
+            Projekt unverbindlich anfragen →
+          </a>
+
+          <a
+            href="#leistungen"
+            class="inline-flex items-center justify-center px-8 py-4 text-[11px] font-semibold uppercase tracking-[0.15em] text-white bg-transparent border border-white/30 hover:border-[#f0dc28] hover:text-[#f0dc28] transition-all duration-200"
+          >
+            Leistungsübersicht ansehen
+          </a>
+        </div>
+      </div>
+
+      <!-- Right Column: Studio Fast Facts (Refero Newsprint Data Block) -->
+      <div class="lg:col-span-4 card-elevation p-8 space-y-6">
+        <span class="text-[11px] uppercase tracking-[0.15em] text-[#f0dc28] font-semibold block pb-3 border-b border-white/10">
+          Dino Bruns Eckdaten
+        </span>
+
+        <div class="space-y-4 text-xs text-neutral-300">
+          <div>
+            <strong class="block text-white font-medium mb-0.5 uppercase tracking-wider text-[10px] text-[#8e9990]">Standort</strong>
+            <span class="text-white">Grotenburgstraße 106, 47800 Krefeld</span>
+          </div>
+
+          <div>
+            <strong class="block text-white font-medium mb-0.5 uppercase tracking-wider text-[10px] text-[#8e9990]">Spezialisierung</strong>
+            <span>Frescolori® Kalkmarmorputz, fugenlose Bäder, Betonböden im Gießverfahren & Betonwände</span>
+          </div>
+
+          <div>
+            <strong class="block text-white font-medium mb-0.5 uppercase tracking-wider text-[10px] text-[#8e9990]">Qualifikation</strong>
+            <span>Eingetragener Meisterbetrieb der Handwerkskammer Düsseldorf</span>
+          </div>
+
+          <div>
+            <strong class="block text-white font-medium mb-0.5 uppercase tracking-wider text-[10px] text-[#8e9990]">Einsatzgebiet</strong>
+            <span>Krefeld, Meerbusch, Düsseldorf, Moers, Ruhrgebiet</span>
+          </div>
+        </div>
+
+        <div class="pt-4 border-t border-white/10">
+          <a
+            href="tel:+492151391919"
+            class="text-[11px] uppercase tracking-[0.15em] text-[#f0dc28] hover:underline font-bold block"
+          >
+            Direktanruf: 02151 391919 →
+          </a>
+        </div>
+      </div>
+
+    </div>
+  </div>
+
+</section>
+
+<style>
+  @keyframes marquee {
+    0% { transform: translateX(0); }
+    100% { transform: translateX(-50%); }
+  }
+
+  .marquee-track {
+    animation: marquee 70s linear infinite;
+  }
+</style>

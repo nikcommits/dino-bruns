@@ -1,0 +1,115 @@
+---
+import Header from '../components/Header.astro';
+import Footer from '../components/Footer.astro';
+import ScrollAnimations from '../components/ScrollAnimations.astro';
+import MobileStickyBar from '../components/MobileStickyBar.astro';
+import '../styles/global.css';
+
+interface Props {
+  title?: string;
+  description?: string;
+  image?: string;
+  canonical?: string;
+  type?: string;
+  schema?: object;
+}
+
+const {
+  title = 'Dino Bruns Raumdesign | Fugenlose Bäder, Betonböden & Kalkmarmorputz Krefeld',
+  description = 'High-End Raumdesign & Oberflächenstudio in Krefeld. Spezialisiert auf fugenlose Design-Betonböden, Frescolori® Kalkmarmorputz, Luxus-Wandgestaltung und exklusive Raumausstattung.',
+  image = '/images/logo/dino-bruns-logo.png',
+  canonical = Astro.url.href,
+  type = 'website',
+  schema,
+} = Astro.props;
+
+const siteUrl = 'https://dino-bruns.de';
+
+const defaultSchema = {
+  '@context': 'https://schema.org',
+  '@type': 'HomeAndConstructionBusiness',
+  '@id': `${siteUrl}/#organization`,
+  name: 'Dino Bruns Raumdesign',
+  legalName: 'Dino Bruns Raumdesign',
+  url: siteUrl,
+  logo: `${siteUrl}/images/logo/dino-bruns-logo.png`,
+  image: `${siteUrl}/images/logo/dino-bruns-logo.png`,
+  description: description,
+  telephone: '+49 2151 391919',
+  email: 'info@dino-bruns.de',
+  priceRange: '€€€',
+  address: {
+    '@type': 'PostalAddress',
+    streetAddress: 'Grotenburgstraße 106',
+    addressLocality: 'Krefeld',
+    postalCode: '47800',
+    addressRegion: 'Nordrhein-Westfalen',
+    addressCountry: 'DE',
+  },
+  geo: {
+    '@type': 'GeoCoordinates',
+    latitude: 51.3283,
+    longitude: 6.5861,
+  },
+  areaServed: [
+    { '@type': 'City', name: 'Krefeld' },
+    { '@type': 'City', name: 'Düsseldorf' },
+    { '@type': 'City', name: 'Meerbusch' },
+    { '@type': 'City', name: 'Moers' },
+    { '@type': 'City', name: 'Neuss' },
+    { '@type': 'AdministrativeArea', name: 'Niederrhein' },
+    { '@type': 'AdministrativeArea', name: 'Ruhrgebiet' },
+  ],
+};
+
+const finalSchema = schema || defaultSchema;
+---
+
+<!doctype html>
+<html lang="de" class="scroll-smooth antialiased dark">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+    <meta name="generator" content={Astro.generator} />
+
+    <!-- SEO Meta Tags -->
+    <title>{title}</title>
+    <meta name="description" content={description} />
+    <link rel="canonical" href={canonical} />
+    <meta name="robots" content="index, follow, max-image-preview:large, max-snippet:-1, max-video-preview:-1" />
+
+    <!-- Open Graph / Facebook -->
+    <meta property="og:type" content={type} />
+    <meta property="og:url" content={canonical} />
+    <meta property="og:title" content={title} />
+    <meta property="og:description" content={description} />
+    <meta property="og:image" content={image.startsWith('http') ? image : `${siteUrl}${image}`} />
+    <meta property="og:locale" content="de_DE" />
+    <meta property="og:site_name" content="Dino Bruns Raumdesign" />
+
+    <!-- Google Fonts Preconnect & Exact Typography -->
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Instrument+Serif:ital@0;1&family=Plus+Jakarta+Sans:wght@300;400;500;600;700&display=swap"
+      rel="stylesheet"
+    />
+
+    <!-- Structured Data (JSON-LD) -->
+    <script type="application/ld+json" set:html={JSON.stringify(finalSchema)} />
+  </head>
+  <body class="bg-[#0a0a0a] text-[#fafffa] min-h-screen flex flex-col font-sans selection:bg-[#f0dc28] selection:text-black">
+    <Header />
+    <main class="flex-grow">
+      <slot />
+    </main>
+    <Footer />
+
+    <!-- Global GSAP Animation Engine -->
+    <ScrollAnimations />
+
+    <!-- Sticky Mobile Quick Contact Bar -->
+    <MobileStickyBar />
+  </body>
+</html>

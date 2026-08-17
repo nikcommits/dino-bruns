@@ -1,0 +1,88 @@
+---
+const textures = [
+  {
+    id: 'kalkmarmor',
+    title: 'Frescolori® Kalkmarmorputz',
+    origin: 'Italienisches Vorbild & Naturrohstoffe',
+    image: '/img/IMG_5952-512.jpg',
+    description: 'Besteht aus natürlichen emissionsfreien Rohstoffen. Bietet mit seiner Bindemittelkombination und speziellen Versiegelung 100%ige Dichtigkeit im Nasszellenbereich bei spürbar angenehmem Raumklima.',
+    tag: 'Wand & Bad',
+  },
+  {
+    id: 'beton',
+    title: 'Betonböden im Gießverfahren',
+    origin: 'Optimal abgestimmte Baustoffe',
+    image: '/img/IMG_5909-512.jpg',
+    description: 'Nicht »gespachtelt«, sondern im Gieß- und Schüttverfahren aufgebracht, damit die Masse in sich verlaufen kann. So entsteht ein einzigartiges, natürliches Bild mit individueller Rutschfestigkeit.',
+    tag: 'Boden & Unikat',
+  },
+  {
+    id: 'textilien',
+    title: 'Maßteppiche & Vorhangsysteme',
+    origin: 'JAB Anstoetz, interstil & Fischbacher',
+    image: '/img/interstil-milieu-f1-deckensystem-2-512.jpg',
+    description: 'Ob abgepasster Teppich oder handgefertigtes Unikat unseres Bodenspezialisten: Ausgewählte Materialien und perfekte Verarbeitung garantieren lange Schönheit auch bei starker Beanspruchung.',
+    tag: 'Textil & Haptik',
+  },
+];
+---
+
+<section class="py-24 bg-[#0a0a0a] text-white border-b border-white/10">
+  <div class="max-w-7xl mx-auto px-4 sm:px-8">
+    
+    <!-- Section Header -->
+    <div class="max-w-3xl mb-16 space-y-3 pb-8 border-b border-white/10">
+      <div class="text-xs uppercase tracking-[0.2em] font-medium text-[#f0dc28]">
+        Haptik & Materialkompetenz
+      </div>
+      <h2 class="font-serif text-4xl sm:text-5xl font-normal text-white">
+        Materialien, die man im Raum spüren muss.
+      </h2>
+      <p class="text-sm sm:text-base text-neutral-300 font-normal leading-relaxed">
+        Jeder Raum ist ein Unikat. In unserem Krefelder Showroom (Grotenburgstraße 106) erleben Sie Original-Musterplatten bei natürlichem Tageslicht.
+      </p>
+    </div>
+
+    <!-- Materials Grid with 3D Tilt Cards -->
+    <div class="grid grid-cols-1 lg:grid-cols-3 gap-8">
+      {textures.map((item) => (
+        <div class="material-card bg-[#141414] border border-white/10 flex flex-col justify-between group hover:border-[#f0dc28] transition-all duration-300">
+          <div>
+            <div class="relative h-64 overflow-hidden border-b border-white/10 bg-black">
+              <img
+                src={item.image}
+                alt={item.title}
+                class="w-full h-full object-cover transition-transform duration-700 group-hover:scale-110"
+                loading="lazy"
+              />
+              <div class="absolute top-0 left-0 bg-[#0a0a0a] text-white px-3 py-1 text-[10px] uppercase tracking-widest border-r border-b border-white/10 font-mono">
+                {item.tag}
+              </div>
+            </div>
+
+            <div class="p-8 space-y-3">
+              <span class="text-[10px] uppercase tracking-widest text-[#f0dc28] font-semibold block">{item.origin}</span>
+              <h3 class="font-serif text-2xl font-normal text-white group-hover:text-[#f0dc28] transition-colors">
+                {item.title}
+              </h3>
+              <p class="text-xs text-neutral-300 leading-relaxed font-normal">
+                {item.description}
+              </p>
+            </div>
+          </div>
+
+          <div class="p-8 pt-0">
+            <a
+              href="/kontakt"
+              class="text-xs font-semibold uppercase tracking-wider text-white hover:text-[#f0dc28] flex items-center justify-between border-t border-white/10 pt-4 transition-colors"
+            >
+              <span>Muster im Showroom ansehen</span>
+              <span>→</span>
+            </a>
+          </div>
+        </div>
+      ))}
+    </div>
+
+  </div>
+</section>

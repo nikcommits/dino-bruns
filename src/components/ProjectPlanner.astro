@@ -1,0 +1,268 @@
+---
+---
+
+<section id="projekt-planer" class="py-24 bg-[#0a0a0a] bg-ambient-spotlight text-white relative">
+  <div class="max-w-4xl mx-auto px-4 sm:px-8">
+    
+    <!-- Centered Form Introduction -->
+    <div class="text-center max-w-2xl mx-auto mb-16 space-y-4">
+      <div class="inline-flex items-center gap-2">
+        <span class="w-2 h-2 bg-[#f0dc28]"></span>
+        <span class="text-[11px] uppercase tracking-[0.2em] font-semibold text-[#f0dc28]">
+          Interaktiver Projekt-Check
+        </span>
+      </div>
+      <h2 class="font-serif text-4xl sm:text-5xl font-normal text-white">
+        In 3 Schritten zu Ihrem Raum-Unikat.
+      </h2>
+      <p class="text-xs sm:text-sm text-neutral-300 font-normal leading-relaxed max-w-lg mx-auto">
+        Wählen Sie Ihr gewünschtes Vorhaben. Meister Dino Bruns prüft Ihre Angaben persönlich und erstellt eine fundierte Ersteinschätzung.
+      </p>
+    </div>
+
+    <!-- Sharp Dark Architectural Form Box (0px Radius, Elevation) -->
+    <div class="card-elevation p-6 sm:p-10 md:p-14">
+      
+      <form id="project-planner-form" class="space-y-10" onsubmit="event.preventDefault(); document.getElementById('form-success-msg').classList.remove('hidden'); document.getElementById('form-inputs-container').classList.add('hidden');">
+        
+        <div id="form-inputs-container" class="space-y-10">
+          
+          <!-- Step 1: Gewerk -->
+          <div class="space-y-4">
+            <div class="flex items-center gap-3 pb-3 border-b border-white/10">
+              <span class="text-xs font-mono uppercase tracking-widest text-[#f0dc28]">01 /</span>
+              <h3 class="text-xs uppercase tracking-wider text-white font-semibold">Welches Gewerk planen Sie?</h3>
+            </div>
+
+            <div class="grid grid-cols-1 sm:grid-cols-2 gap-3.5">
+              
+              <!-- 1. Betonboden / Sichtbetonwand -->
+              <label class="group flex items-center justify-between p-4 border border-white/15 hover:border-[#f0dc28] bg-[#141414] cursor-pointer transition-all duration-200 has-[:checked]:border-[#f0dc28] has-[:checked]:bg-[#f0dc28]/10 has-[:checked]:ring-1 has-[:checked]:ring-[#f0dc28]">
+                <div class="flex items-center gap-3">
+                  <div class="w-8 h-8 flex items-center justify-center text-[#f0dc28] border border-white/10 bg-black shrink-0">
+                    <svg class="w-4 h-4" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75">
+                      <rect x="3" y="3" width="18" height="18" rx="0"></rect>
+                      <path d="M3 9h18M3 15h18M9 3v18M15 3v18"></path>
+                    </svg>
+                  </div>
+                  <div>
+                    <span class="text-xs font-semibold text-white block">Betonboden oder Sichtbetonwand</span>
+                    <span class="text-[10px] text-neutral-300">Gießverfahren & Kalk-Marmor-Wände</span>
+                  </div>
+                </div>
+                <input type="radio" name="gewerk" value="beton" class="accent-[#f0dc28] shrink-0" checked />
+              </label>
+
+              <!-- 2. Frescolori Kalkmarmorputz -->
+              <label class="group flex items-center justify-between p-4 border border-white/15 hover:border-[#f0dc28] bg-[#141414] cursor-pointer transition-all duration-200 has-[:checked]:border-[#f0dc28] has-[:checked]:bg-[#f0dc28]/10 has-[:checked]:ring-1 has-[:checked]:ring-[#f0dc28]">
+                <div class="flex items-center gap-3">
+                  <div class="w-8 h-8 flex items-center justify-center text-[#f0dc28] border border-white/10 bg-black shrink-0">
+                    <svg class="w-4 h-4" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75">
+                      <path d="M12 2.69l5.66 5.66a8 8 0 1 1-11.31 0z"></path>
+                    </svg>
+                  </div>
+                  <div>
+                    <span class="text-xs font-semibold text-white block">Frescolori® Kalkmarmorputz</span>
+                    <span class="text-[10px] text-neutral-300">Fugenlose Bäder, Duschen & Wände</span>
+                  </div>
+                </div>
+                <input type="radio" name="gewerk" value="kalkmarmor" class="accent-[#f0dc28] shrink-0" />
+              </label>
+
+              <!-- 3. Vorhangsysteme & Teppiche -->
+              <label class="group flex items-center justify-between p-4 border border-white/15 hover:border-[#f0dc28] bg-[#141414] cursor-pointer transition-all duration-200 has-[:checked]:border-[#f0dc28] has-[:checked]:bg-[#f0dc28]/10 has-[:checked]:ring-1 has-[:checked]:ring-[#f0dc28]">
+                <div class="flex items-center gap-3">
+                  <div class="w-8 h-8 flex items-center justify-center text-[#f0dc28] border border-white/10 bg-black shrink-0">
+                    <svg class="w-4 h-4" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75">
+                      <path d="M4 4h16v16H4zM4 9h16M9 4v16"></path>
+                    </svg>
+                  </div>
+                  <div>
+                    <span class="text-xs font-semibold text-white block">Vorhangsysteme & Maßteppiche</span>
+                    <span class="text-[10px] text-neutral-300">interstil Wellenvorhänge & JAB Anstoetz</span>
+                  </div>
+                </div>
+                <input type="radio" name="gewerk" value="vorhaenge" class="accent-[#f0dc28] shrink-0" />
+              </label>
+
+              <!-- 4. Energiesparen & Sonnenschutz -->
+              <label class="group flex items-center justify-between p-4 border border-white/15 hover:border-[#f0dc28] bg-[#141414] cursor-pointer transition-all duration-200 has-[:checked]:border-[#f0dc28] has-[:checked]:bg-[#f0dc28]/10 has-[:checked]:ring-1 has-[:checked]:ring-[#f0dc28]">
+                <div class="flex items-center gap-3">
+                  <div class="w-8 h-8 flex items-center justify-center text-[#f0dc28] border border-white/10 bg-black shrink-0">
+                    <svg class="w-4 h-4" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75">
+                      <path d="M12 3v1m0 16v1m9-9h-1M4 12H3m15.364 6.364l-.707-.707M6.343 6.343l-.707-.707m12.728 0l-.707.707M6.343 17.657l-.707.707M16 12a4 4 0 11-8 0 4 4 0 018 0z"></path>
+                    </svg>
+                  </div>
+                  <div>
+                    <span class="text-xs font-semibold text-white block">Energiesparen & Sonnenschutz</span>
+                    <span class="text-[10px] text-neutral-300">Duette® Wabenplissees & Jalousien</span>
+                  </div>
+                </div>
+                <input type="radio" name="gewerk" value="energiesparen" class="accent-[#f0dc28] shrink-0" />
+              </label>
+
+              <!-- 5. Innenausbau & Schiebetüren -->
+              <label class="group flex items-center justify-between p-4 border border-white/15 hover:border-[#f0dc28] bg-[#141414] cursor-pointer transition-all duration-200 has-[:checked]:border-[#f0dc28] has-[:checked]:bg-[#f0dc28]/10 has-[:checked]:ring-1 has-[:checked]:ring-[#f0dc28]">
+                <div class="flex items-center gap-3">
+                  <div class="w-8 h-8 flex items-center justify-center text-[#f0dc28] border border-white/10 bg-black shrink-0">
+                    <svg class="w-4 h-4" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75">
+                      <path d="M3 3h18v18H3zM12 3v18M8 12h.01M16 12h.01"></path>
+                    </svg>
+                  </div>
+                  <div>
+                    <span class="text-xs font-semibold text-white block">Innenausbau & Schiebetüren</span>
+                    <span class="text-[10px] text-neutral-300">Design-Böden & maßgefertigte Raumteiler</span>
+                  </div>
+                </div>
+                <input type="radio" name="gewerk" value="innenausbau" class="accent-[#f0dc28] shrink-0" />
+              </label>
+
+              <!-- 6. Badprofis Komplettbäder -->
+              <label class="group flex items-center justify-between p-4 border border-[#f0dc28]/50 bg-[#f0dc28]/10 cursor-pointer transition-all duration-200 has-[:checked]:border-[#f0dc28] has-[:checked]:bg-[#f0dc28]/20 has-[:checked]:ring-1 has-[:checked]:ring-[#f0dc28]">
+                <div class="flex items-center gap-3">
+                  <div class="w-8 h-8 flex items-center justify-center text-[#f0dc28] border border-[#f0dc28]/40 bg-black shrink-0">
+                    <svg class="w-4 h-4" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75">
+                      <path d="M4 12v6a2 2 0 002 2h12a2 2 0 002-2v-6M2 12h20M6 12V6a3 3 0 016 0v6"></path>
+                    </svg>
+                  </div>
+                  <div>
+                    <span class="text-xs font-semibold text-[#f0dc28] block">Komplettbad-Sanierung</span>
+                    <span class="text-[10px] text-neutral-300">Badprofis by Dino Bruns & Lutz Kottsieper</span>
+                  </div>
+                </div>
+                <input type="radio" name="gewerk" value="badprofis" class="accent-[#f0dc28] shrink-0" />
+              </label>
+
+            </div>
+          </div>
+
+          <!-- Step 2: Rahmendaten -->
+          <div class="pt-6 border-t border-white/10 space-y-4">
+            <div class="flex items-center gap-3 pb-3 border-b border-white/10">
+              <span class="text-xs font-mono uppercase tracking-widest text-[#f0dc28]">02 /</span>
+              <h3 class="text-xs uppercase tracking-wider text-white font-semibold">Projektdetails</h3>
+            </div>
+
+            <div class="grid grid-cols-1 sm:grid-cols-2 gap-6">
+              <div>
+                <label class="block text-[11px] uppercase tracking-wider text-neutral-300 font-medium mb-2">Ungefähre Fläche</label>
+                <select name="flaeche" class="w-full bg-[#161616] border border-white/20 px-4 py-3.5 text-xs text-white focus:outline-none focus:border-[#f0dc28] focus:ring-1 focus:ring-[#f0dc28]">
+                  <option value="unter-20">Kompakt (unter 20 m² / Einzelner Raum)</option>
+                  <option value="20-50" selected>Mittel (20 bis 50 m²)</option>
+                  <option value="50-100">Groß (50 bis 100 m² / Wohnbereich)</option>
+                  <option value="ueber-100">Sehr groß (über 100 m² / Gesamtes Objekt)</option>
+                </select>
+              </div>
+
+              <div>
+                <label class="block text-[11px] uppercase tracking-wider text-neutral-300 font-medium mb-2">Geplanter Zeitraum</label>
+                <select name="zeitraum" class="w-full bg-[#161616] border border-white/20 px-4 py-3.5 text-xs text-white focus:outline-none focus:border-[#f0dc28] focus:ring-1 focus:ring-[#f0dc28]">
+                  <option value="sofort">Schnellstmöglich (in 1–4 Wochen)</option>
+                  <option value="1-3-monate" selected>In 1 bis 3 Monaten</option>
+                  <option value="3-6-monate">In 3 bis 6 Monaten</option>
+                  <option value="in-planung">Generelle Planung / Noch offen</option>
+                </select>
+              </div>
+            </div>
+          </div>
+
+          <!-- Step 3: Kontaktdaten -->
+          <div class="pt-6 border-t border-white/10 space-y-4">
+            <div class="flex items-center gap-3 pb-3 border-b border-white/10">
+              <span class="text-xs font-mono uppercase tracking-widest text-[#f0dc28]">03 /</span>
+              <h3 class="text-xs uppercase tracking-wider text-white font-semibold">Ihre Kontaktdaten</h3>
+            </div>
+
+            <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
+              <div>
+                <label for="name" class="block text-[11px] uppercase tracking-wider text-neutral-300 font-medium mb-1">Ihr Name *</label>
+                <input
+                  type="text"
+                  id="name"
+                  name="name"
+                  required
+                  placeholder="z. B. Dr. Thomas Becker"
+                  class="w-full bg-[#161616] border border-white/20 px-4 py-3.5 text-xs text-white placeholder-neutral-500 focus:outline-none focus:border-[#f0dc28] focus:ring-1 focus:ring-[#f0dc28]"
+                />
+              </div>
+
+              <div>
+                <label for="phone" class="block text-[11px] uppercase tracking-wider text-neutral-300 font-medium mb-1">Telefonnummer *</label>
+                <input
+                  type="tel"
+                  id="phone"
+                  name="phone"
+                  required
+                  placeholder="z. B. 0177 1234567"
+                  class="w-full bg-[#161616] border border-white/20 px-4 py-3.5 text-xs text-white placeholder-neutral-500 focus:outline-none focus:border-[#f0dc28] focus:ring-1 focus:ring-[#f0dc28]"
+                />
+              </div>
+
+              <div class="sm:col-span-2">
+                <label for="email" class="block text-[11px] uppercase tracking-wider text-neutral-300 font-medium mb-1">E-Mail-Adresse (optional)</label>
+                <input
+                  type="email"
+                  id="email"
+                  name="email"
+                  placeholder="ihre.adresse@beispiel.de"
+                  class="w-full bg-[#161616] border border-white/20 px-4 py-3.5 text-xs text-white placeholder-neutral-500 focus:outline-none focus:border-[#f0dc28] focus:ring-1 focus:ring-[#f0dc28]"
+                />
+              </div>
+            </div>
+
+            <!-- Submit Button (Sharp 0px Button with Arrow Icon) -->
+            <div class="mt-8">
+              <button
+                type="submit"
+                class="w-full py-4 text-xs font-semibold uppercase tracking-widest text-black bg-[#f0dc28] hover:bg-white transition-all duration-200 flex items-center justify-center gap-2 cursor-pointer shadow-lg"
+              >
+                <span>Projekt unverbindlich anfragen</span>
+                <svg class="w-3.5 h-3.5" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5">
+                  <path d="M5 12h14M12 5l7 7-7 7"></path>
+                </svg>
+              </button>
+              
+              <div class="mt-4 flex flex-col sm:flex-row items-center justify-between gap-3 text-[11px] text-neutral-300">
+                <div class="flex items-center gap-1.5">
+                  <svg class="w-3.5 h-3.5 text-[#f0dc28]" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                    <path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"></path>
+                  </svg>
+                  <span>100% vertraulich & kostenfrei • Antwort innerhalb 24h</span>
+                </div>
+                
+                <a href="tel:+492151391919" class="text-neutral-300 hover:text-[#f0dc28] transition-colors">
+                  Lieber telefonisch? <strong>02151 391919</strong>
+                </a>
+              </div>
+            </div>
+          </div>
+
+        </div>
+
+        <!-- Success Message with Elegant State -->
+        <div id="form-success-msg" class="hidden text-center py-12 space-y-4">
+          <div class="w-12 h-12 mx-auto flex items-center justify-center text-[#f0dc28] border border-[#f0dc28]/40 bg-[#f0dc28]/10">
+            <svg class="w-6 h-6" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5">
+              <path d="M20 6L9 17l-5-5"></path>
+            </svg>
+          </div>
+          <h3 class="font-serif text-3xl sm:text-4xl text-white font-normal">
+            Vielen Dank für Ihre Anfrage.
+          </h3>
+          <p class="text-xs sm:text-sm text-neutral-300 max-w-md mx-auto leading-relaxed font-normal">
+            Meister Dino Bruns hat Ihre Eckdaten erhalten und meldet sich innerhalb von 24 Stunden persönlich bei Ihnen zur Abstimmung.
+          </p>
+          <div class="pt-4">
+            <a href="tel:+492151391919" class="inline-flex items-center gap-2 text-xs font-semibold uppercase tracking-widest text-[#f0dc28] hover:underline">
+              <span>Bei dringenden Fragen direkt anrufen: 02151 391919</span>
+              <span>→</span>
+            </a>
+          </div>
+        </div>
+
+      </form>
+
+    </div>
+
+  </div>
+</section>

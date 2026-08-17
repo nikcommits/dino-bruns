@@ -1,0 +1,110 @@
+---
+import Layout from '../layouts/Layout.astro';
+import ProjectPlanner from '../components/ProjectPlanner.astro';
+---
+
+<Layout
+  title="Kontakt & Showroom Krefeld | Dino Bruns Raumdesign"
+  description="Vereinbaren Sie Ihren persönlichen Beratungstermin im Showroom Krefeld (Grotenburgstraße 106) oder fordern Sie Ihr unverbindliches Projektangebot an."
+>
+  <!-- Hero Section -->
+  <section class="relative bg-[#0a0a0a] text-white py-20 lg:py-28 border-b border-white/10 overflow-hidden">
+    <div class="max-w-7xl mx-auto px-4 sm:px-8">
+      <div class="max-w-3xl space-y-6">
+        <div class="text-xs uppercase tracking-[0.2em] font-medium text-[#f0dc28]">
+          Persönliche Meisterberatung
+        </div>
+
+        <h1 class="font-serif text-4xl sm:text-5xl lg:text-6xl font-normal leading-tight">
+          Lassen Sie uns über Ihr Raumprojekt sprechen.
+        </h1>
+
+        <p class="text-base sm:text-lg text-neutral-300 font-normal leading-relaxed">
+          Besuchen Sie uns im Showroom an der Grotenburgstraße 106 in Krefeld oder fordern Sie vorab ein unverbindliches Erstgespräch an.
+        </p>
+      </div>
+    </div>
+  </section>
+
+  <!-- Contact Cards Grid (Dark Mode & Straight Edges) -->
+  <section class="py-16 bg-[#0e0e0e] text-white border-b border-white/10">
+    <div class="max-w-7xl mx-auto px-4 sm:px-8">
+      <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
+        
+        <!-- Phone Card -->
+        <div class="bg-[#141414] p-8 border border-white/10 flex flex-col justify-between">
+          <div class="space-y-3">
+            <span class="text-xs uppercase tracking-widest text-[#f0dc28] font-semibold block">01 / Telefon</span>
+            <h3 class="font-serif text-xl font-normal text-white">Telefonischer Kontakt</h3>
+            <p class="text-xs text-neutral-300 font-normal">
+              Direkter Draht zu Meister Dino Bruns für schnelle Rückfragen oder Auskünfte.
+            </p>
+          </div>
+          <div class="pt-6 border-t border-white/10 space-y-2 mt-6">
+            <a href="tel:+492151391919" class="block font-medium text-sm text-white hover:text-[#f0dc28] transition-colors">
+              Festnetz: 02151 391919
+            </a>
+            <a href="tel:+491773919190" class="block font-medium text-sm text-white hover:text-[#f0dc28] transition-colors">
+              Mobil: 0177 3919190
+            </a>
+          </div>
+        </div>
+
+        <!-- WhatsApp & Mail Card -->
+        <div class="bg-[#141414] p-8 border border-white/10 flex flex-col justify-between">
+          <div class="space-y-3">
+            <span class="text-xs uppercase tracking-widest text-[#f0dc28] font-semibold block">02 / Digital</span>
+            <h3 class="font-serif text-xl font-normal text-white">Pläne & Fotos senden</h3>
+            <p class="text-xs text-neutral-300 font-normal">
+              Senden Sie uns Grundrisse, Raumfotos oder Skizzen per WhatsApp oder E-Mail zu.
+            </p>
+          </div>
+          <div class="pt-6 border-t border-white/10 space-y-2 mt-6">
+            <a href="https://wa.me/491773919190" target="_blank" rel="noopener noreferrer" class="block text-xs font-semibold uppercase tracking-wider text-[#f0dc28] hover:underline">
+              WhatsApp Chat starten ↗
+            </a>
+            <a href="mailto:info@dino-bruns.de" class="block font-medium text-sm text-white hover:text-[#f0dc28] transition-colors">
+              info@dino-bruns.de
+            </a>
+          </div>
+        </div>
+
+        <!-- Showroom Card -->
+        <div class="bg-[#141414] p-8 border border-white/10 flex flex-col justify-between">
+          <div class="space-y-3">
+            <span class="text-xs uppercase tracking-widest text-[#f0dc28] font-semibold block">03 / Standort</span>
+            <h3 class="font-serif text-xl font-normal text-white">Showroom Krefeld</h3>
+            <p class="text-xs text-neutral-300 font-normal">
+              Grotenburgstraße 106<br />
+              47800 Krefeld
+            </p>
+          </div>
+          <div class="pt-6 border-t border-white/10 mt-6">
+            <a
+              href="https://maps.google.com/?q=Grotenburgstraße+106+47800+Krefeld"
+              target="_blank"
+              rel="noopener noreferrer"
+              class="text-xs font-semibold uppercase tracking-wider text-[#f0dc28] hover:underline flex items-center gap-1"
+            >
+              <span>Route in Google Maps</span> ↗
+            </a>
+          </div>
+        </div>
+
+      </div>
+
+      <!-- Service Region Bar -->
+      <div class="mt-12 p-6 border border-white/10 bg-[#121212] text-center space-y-2">
+        <span class="text-xs uppercase tracking-widest text-[#f0dc28] block font-semibold">
+          Einsatzgebiet
+        </span>
+        <p class="text-xs text-neutral-300 max-w-2xl mx-auto font-normal">
+          Wir sind für unsere Auftraggeber im gesamten Rheinland und Ruhrgebiet im Einsatz: <strong class="text-white font-medium">Krefeld, Düsseldorf, Meerbusch, Moers, Neuss, Duisburg, Ratingen, Essen und Umgebung</strong>.
+        </p>
+      </div>
+    </div>
+  </section>
+
+  <!-- Interactive Project Planner Lead Funnel -->
+  <ProjectPlanner />
+</Layout>

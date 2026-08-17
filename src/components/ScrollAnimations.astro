@@ -1,0 +1,118 @@
+---
+---
+
+<script>
+  import { gsap } from 'gsap';
+  import { ScrollTrigger } from 'gsap/ScrollTrigger';
+
+  gsap.registerPlugin(ScrollTrigger);
+
+  let ctx: gsap.Context | null = null;
+
+  function initAnimations() {
+    // Respect accessibility prefers-reduced-motion
+    if (window.matchMedia('(prefers-reduced-motion: reduce)').matches) {
+      return;
+    }
+
+    // Clean up previous animations & ScrollTriggers on re-init (Astro lifecycle)
+    if (ctx) {
+      ctx.revert();
+    }
+
+    ctx = gsap.context(() => {
+      // 1. okc.media Style Dual-Speed Text Reveal (Quick opacity 0.8s, silky move 1.6s)
+      const revealTexts = document.querySelectorAll('.gsap-reveal-text');
+      revealTexts.forEach((el) => {
+        gsap.fromTo(
+          el,
+          { y: 45, opacity: 0 },
+          {
+            y: 0,
+            opacity: 1,
+            duration: 1.4,
+            ease: 'power3.out',
+            scrollTrigger: {
+              trigger: el,
+              start: 'top 88%',
+              toggleActions: 'play none none reverse',
+            },
+          }
+        );
+      });
+
+      // 2. okc.media Style Section Fade-In on Enter and Gentle Focus on Exit
+      const focusSections = document.querySelectorAll('.gsap-focus-section');
+      focusSections.forEach((sec) => {
+        gsap.fromTo(
+          sec,
+          { opacity: 0.2, y: 30 },
+          {
+            opacity: 1,
+            y: 0,
+            duration: 1.2,
+            ease: 'power2.out',
+            scrollTrigger: {
+              trigger: sec,
+              start: 'top 85%',
+              end: 'bottom 15%',
+              toggleActions: 'play reverse play reverse',
+            },
+          }
+        );
+      });
+
+      // 3. okc.media Style Silky Parallax Image Behavior (Smooth GPU yPercent translation)
+      const parallaxImgs = document.querySelectorAll<HTMLElement>('.gsap-parallax-img, img[loading="lazy"]');
+      parallaxImgs.forEach((img) => {
+        const container = img.closest('.overflow-hidden') || img.parentElement;
+        if (container) {
+          gsap.fromTo(
+            img,
+            { yPercent: -6, scale: 1.06, force3D: true },
+            {
+              yPercent: 6,
+              scale: 1,
+              ease: 'none',
+              force3D: true,
+              scrollTrigger: {
+                trigger: container,
+                start: 'top bottom',
+                end: 'bottom top',
+                scrub: 1.2,
+              },
+            }
+          );
+        }
+      });
+
+      // 4. okc.media Staggered Card Entrances with Decelerating Flow
+      const staggerGrids = document.querySelectorAll('.gsap-stagger-grid');
+      staggerGrids.forEach((grid) => {
+        const cards = grid.children;
+        gsap.fromTo(
+          cards,
+          { y: 40, opacity: 0 },
+          {
+            y: 0,
+            opacity: 1,
+            duration: 1.0,
+            stagger: 0.14,
+            ease: 'power3.out',
+            force3D: true,
+            scrollTrigger: {
+              trigger: grid,
+              start: 'top 85%',
+              toggleActions: 'play none none reverse',
+            },
+          }
+        );
+      });
+    });
+  }
+
+  // Support Astro Page Lifecycle & standard load
+  document.addEventListener('DOMContentLoaded', initAnimations);
+  document.addEventListener('astro:page-load', initAnimations);
+  initAnimations();
+</script>

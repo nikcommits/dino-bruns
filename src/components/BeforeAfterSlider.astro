@@ -1,0 +1,141 @@
+---
+interface Props {
+  beforeImage: string;
+  afterImage: string;
+  beforeLabel?: string;
+  afterLabel?: string;
+  title?: string;
+  subtitle?: string;
+}
+
+const {
+  beforeImage = '/img/IMG_2584-512.jpg',
+  afterImage = '/img/IMG_8877-512.jpg',
+  beforeLabel = 'Fliesen mit Fugennetz',
+  afterLabel = 'Frescolori® Fugenlos',
+  title = 'Vorher / Nachher: Der fugenlose Unterschied',
+  subtitle = 'Ziehen Sie den Schieberegler, um den Übergang von herkömmlichen Fliesen zu fugenlosem Frescolori® Kalkmarmorputz zu erleben.',
+} = Astro.props;
+---
+
+<div class="space-y-6">
+  <div class="space-y-2">
+    <span class="text-xs uppercase tracking-[0.2em] font-medium text-[#f0dc28] block">
+      Interaktiver Vergleich
+    </span>
+    <h3 class="font-serif text-2xl sm:text-3xl font-normal text-white">
+      {title}
+    </h3>
+    <p class="text-xs sm:text-sm text-neutral-300 font-normal">
+      {subtitle}
+    </p>
+  </div>
+
+  <!-- Slider Container -->
+  <div class="relative w-full aspect-[16/9] md:aspect-[21/9] overflow-hidden border border-white/20 select-none group cursor-ew-resize bg-black" id="before-after-container">
+    
+    <!-- After Image (Background / Full Width) -->
+    <img
+      src={afterImage}
+      alt={afterLabel}
+      class="absolute inset-0 w-full h-full object-cover"
+      loading="lazy"
+    />
+    <div class="absolute bottom-4 right-4 bg-black/80 backdrop-blur-md px-3 py-1 text-[11px] uppercase tracking-widest text-[#f0dc28] border border-[#f0dc28]/40 z-10">
+      {afterLabel}
+    </div>
+
+    <!-- Before Image (Clipped / Foreground) -->
+    <div
+      id="before-image-clip"
+      class="absolute inset-0 w-1/2 h-full overflow-hidden border-r-2 border-[#f0dc28] transition-none"
+    >
+      <img
+        src={beforeImage}
+        alt={beforeLabel}
+        class="absolute top-0 left-0 max-w-none h-full object-cover"
+        id="before-img-elem"
+        loading="lazy"
+      />
+      <div class="absolute bottom-4 left-4 bg-black/80 backdrop-blur-md px-3 py-1 text-[11px] uppercase tracking-widest text-white border border-white/20 z-10">
+        {beforeLabel}
+      </div>
+    </div>
+
+    <!-- Drag Handle with Gold Accent -->
+    <div
+      id="slider-handle"
+      class="absolute top-0 bottom-0 left-1/2 -ml-4 w-8 flex items-center justify-center pointer-events-none z-20"
+    >
+      <div class="w-8 h-8 bg-[#f0dc28] text-black flex items-center justify-center shadow-2xl font-bold text-xs">
+        ↔
+      </div>
+    </div>
+
+  </div>
+</div>
+
+<script>
+  function initBeforeAfter() {
+    const container = document.getElementById('before-after-container');
+    const clip = document.getElementById('before-image-clip');
+    const handle = document.getElementById('slider-handle');
+    const beforeImg = document.getElementById('before-img-elem');
+
+    if (!container || !clip || !handle || !beforeImg) return;
+
+    function updateWidth() {
+      if (container && beforeImg) {
+        beforeImg.style.width = `${container.offsetWidth}px`;
+      }
+    }
+
+    window.addEventListener('resize', updateWidth);
+    updateWidth();
+
+    let isDown = false;
+
+    function move(x: number) {
+      if (!container || !clip || !handle) return;
+      const rect = container.getBoundingClientRect();
+      let pos = (x - rect.left) / rect.width;
+      pos = Math.max(0, Math.min(1, pos));
+      
+      const pct = pos * 100;
+      clip.style.width = `${pct}%`;
+      handle.style.left = `${pct}%`;
+    }
+
+    container.addEventListener('mousedown', (e) => {
+      isDown = true;
+      move(e.clientX);
+    });
+
+    window.addEventListener('mousemove', (e) => {
+      if (!isDown) return;
+      move(e.clientX);
+    });
+
+    window.addEventListener('mouseup', () => {
+      isDown = false;
+    });
+
+    // Touch Support
+    container.addEventListener('touchstart', (e) => {
+      isDown = true;
+      if (e.touches[0]) move(e.touches[0].clientX);
+    });
+
+    window.addEventListener('touchmove', (e) => {
+      if (!isDown) return;
+      if (e.touches[0]) move(e.touches[0].clientX);
+    });
+
+    window.addEventListener('touchend', () => {
+      isDown = false;
+    });
+  }
+
+  document.addEventListener('DOMContentLoaded', initBeforeAfter);
+  initBeforeAfter();
+</script>

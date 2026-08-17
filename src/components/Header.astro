@@ -1,0 +1,352 @@
+---
+const pathname = Astro.url.pathname;
+
+const navMenu = [
+  {
+    name: 'Startseite',
+    href: '/',
+    exact: true,
+  },
+  {
+    name: 'Über uns',
+    href: '/ueber-uns',
+  },
+  {
+    name: 'Beton',
+    href: '/betonoptik',
+    subitems: [
+      { name: 'Böden im Gießverfahren', href: '/betonoptik#boeden', count: '25 Fotos' },
+      { name: 'Wände & Sichtbeton', href: '/betonoptik#waende', count: '36 Fotos' },
+    ],
+  },
+  {
+    name: 'Bäder',
+    href: '/kalkmarmorputz',
+    highlight: true,
+    subitems: [
+      { name: 'mit Kalkmarmorputz (Frescolori®)', href: '/kalkmarmorputz', count: '112 Fotos' },
+      { name: 'mit Fliesen und mehr', href: '/projekte?kategorie=fliesen', count: '38 Fotos' },
+      { divider: true },
+      { name: 'vorher | nachher (Bilderbogen)', href: '/projekte?kategorie=vorundnach', count: '76 Fotos', special: true },
+    ],
+  },
+  {
+    name: 'Leistungen',
+    href: '/raumausstattung',
+    subitems: [
+      { name: 'Energiesparen (Wabenplissee)', href: '/raumausstattung#energiesparen', tag: 'Duette®' },
+      { name: 'Innenausbau & Komplettsanierung', href: '/raumausstattung#innenausbau', tag: 'Trockenbau' },
+      { name: 'Bodenbeläge & Design-Vinyl', href: '/raumausstattung#bodenbelaege', tag: 'Project Floors' },
+      { name: 'Schiebetüren & Raumteiler', href: '/raumausstattung#schiebetueren', tag: 'Advantage' },
+      { name: 'Vorhangsysteme & Wellenvorhänge', href: '/raumausstattung#vorhangsysteme', tag: 'interstil' },
+      { name: 'Maßteppiche & Unikate', href: '/raumausstattung#teppiche', tag: 'JAB Anstoetz' },
+      { name: 'Dekorationen & Mooswände', href: '/raumausstattung#dekorationen', tag: 'styleGREEN' },
+      { name: 'Sicht- & Sonnenschutz', href: '/raumausstattung#sonnenschutz', tag: 'KADECO' },
+      { name: 'Bettwäsche & Home Textiles', href: '/raumausstattung#bettwaesche', tag: 'Fischbacher' },
+    ],
+  },
+  {
+    name: 'Partner',
+    href: '/raumausstattung#partner',
+  },
+  {
+    name: 'Projekte',
+    href: '/projekte',
+  },
+  {
+    name: 'Kontakt',
+    href: '/kontakt',
+  },
+];
+---
+
+<header class="sticky top-0 z-50 w-full bg-[#0a0a0a] border-b border-white/15 shadow-2xl transition-all duration-300">
+  <!-- Top Broadsheet Micro Utility Bar (Desktop & Tablet) -->
+  <div class="border-b border-white/10 py-1.5 px-4 sm:px-8 xl:px-12 text-neutral-300 text-[11px] font-mono bg-[#050505]">
+    <div class="max-w-[1500px] mx-auto flex flex-wrap justify-between items-center gap-2">
+      <div class="flex items-center gap-3 tracking-wider whitespace-nowrap">
+        <span class="text-white/80">Grotenburgstraße 106 • 47800 Krefeld</span>
+        <span class="hidden md:inline text-white/20">|</span>
+        <span class="hidden md:inline text-neutral-400">Atelier für mineralische Wand- & Bodengestaltung</span>
+      </div>
+
+      <div class="flex items-center gap-4 tracking-wider whitespace-nowrap">
+        <a 
+          href="https://badprofis.pro" 
+          target="_blank" 
+          rel="noopener noreferrer" 
+          class="text-[#f0dc28] hover:underline flex items-center gap-1 font-semibold"
+        >
+          <span>Badprofis Komplettbäder</span>
+          <span class="text-[10px]">↗</span>
+        </a>
+        <span class="text-white/20">|</span>
+        <a href="tel:+492151391919" class="text-white hover:text-[#f0dc28] transition-colors font-medium">
+          Tel. 02151 391919
+        </a>
+      </div>
+    </div>
+  </div>
+
+  <!-- Main Navigation Bar with Extra Width & Breathing Room -->
+  <div class="max-w-[1500px] mx-auto px-4 sm:px-8 xl:px-12 py-3.5 flex items-center justify-between gap-6">
+    <!-- Brand Logo (Links to Home) -->
+    <a href="/" class="flex items-center gap-3 shrink-0" aria-label="Dino Bruns Raumdesign Startseite">
+      <img 
+        src="/images/logo/dino-bruns-logo.png" 
+        alt="Dino Bruns Raumdesign" 
+        class="h-9 sm:h-11 w-auto object-contain brightness-110"
+        width="170"
+        height="44"
+      />
+    </a>
+
+    <!-- Desktop Navigation (lg:flex) with whitespace-nowrap -->
+    <nav class="hidden lg:flex items-center gap-4 xl:gap-7 2xl:gap-8 text-[11px] uppercase tracking-[0.12em] xl:tracking-[0.16em] font-semibold select-none whitespace-nowrap">
+      {navMenu.map((item) => {
+        const isActive = pathname === item.href || (item.href !== '/' && pathname.startsWith(item.href));
+        const hasSubmenu = item.subitems && item.subitems.length > 0;
+
+        return (
+          <div class="relative group/nav py-3">
+            <a
+              href={item.href}
+              class={`inline-flex items-center gap-1.5 py-1 whitespace-nowrap transition-colors ${
+                isActive
+                  ? 'text-[#f0dc28] border-b-2 border-[#f0dc28]'
+                  : 'text-neutral-300 hover:text-white'
+              }`}
+            >
+              <span>{item.name}</span>
+              {hasSubmenu && (
+                <svg class="w-3 h-3 text-neutral-400 group-hover/nav:text-[#f0dc28] transition-transform duration-200 group-hover/nav:rotate-180 shrink-0" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                  <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7" />
+                </svg>
+              )}
+            </a>
+
+            <!-- 100% Solid Opaque Dropdown Menu on Desktop -->
+            {hasSubmenu && (
+              <div class="absolute top-full left-0 hidden group-hover/nav:block pt-1.5 w-80 z-50 animate-fadeIn">
+                <div class="bg-[#111111] border-2 border-white/20 border-t-2 border-t-[#f0dc28] p-2.5 shadow-[0_25px_60px_-15px_rgba(0,0,0,1)] space-y-1">
+                  {item.subitems.map((sub) => {
+                    if (sub.divider) {
+                      return <div class="border-t border-white/15 my-2"></div>;
+                    }
+                    return (
+                      <a
+                        href={sub.href}
+                        class={`flex items-center justify-between px-3.5 py-2.5 text-[11px] transition-colors rounded-none hover:bg-[#1f1f1f] border border-transparent hover:border-white/10 ${
+                          sub.special ? 'text-[#f0dc28] font-bold bg-[#181818]' : 'text-neutral-100 hover:text-white'
+                        }`}
+                      >
+                        <span class="truncate font-medium">{sub.name}</span>
+                        {sub.count && (
+                          <span class="text-[9px] font-mono px-2 py-0.5 bg-[#050505] text-[#f0dc28] border border-white/15 shrink-0 ml-2 font-bold">
+                            {sub.count}
+                          </span>
+                        )}
+                        {sub.tag && (
+                          <span class="text-[9px] font-mono text-neutral-400 shrink-0 ml-2">
+                            {sub.tag}
+                          </span>
+                        )}
+                      </a>
+                    );
+                  })}
+                </div>
+              </div>
+            )}
+          </div>
+        );
+      })}
+    </nav>
+
+    <!-- Desktop CTA Button -->
+    <div class="hidden lg:flex items-center shrink-0">
+      <a
+        href="/kontakt"
+        class="inline-flex items-center justify-center px-6 py-3 text-[11px] font-bold uppercase tracking-[0.15em] text-black bg-[#f0dc28] hover:bg-white transition-all duration-200 shadow cursor-pointer whitespace-nowrap"
+      >
+        Projekt anfragen
+      </a>
+    </div>
+
+    <!-- Mobile Header Actions (Phone quick-call + Hamburger toggle) -->
+    <div class="flex lg:hidden items-center gap-2 shrink-0">
+      <a
+        href="tel:+492151391919"
+        class="p-2 text-[#f0dc28] border border-white/15 bg-[#141414] hover:bg-white/10"
+        aria-label="Dino Bruns anrufen"
+      >
+        <svg class="w-5 h-5" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+          <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 5a2 2 0 012-2h3.28a1 1 0 01.948.684l1.498 4.493a1 1 0 01-.502 1.21l-2.257 1.13a11.042 11.042 0 005.516 5.516l1.13-2.257a1 1 0 011.21-.502l4.493 1.498a1 1 0 01.684.949V19a2 2 0 01-2 2h-1C9.716 21 3 14.284 3 6V5z" />
+        </svg>
+      </a>
+
+      <button
+        id="mobile-menu-toggle"
+        type="button"
+        class="p-2 text-white border border-white/15 bg-[#141414] hover:bg-white/10 focus:outline-none cursor-pointer"
+        aria-label="Menü öffnen"
+        aria-expanded="false"
+      >
+        <svg id="hamburger-icon" class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+          <path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M4 6h16M4 12h16M4 18h16"></path>
+        </svg>
+        <svg id="close-icon" class="w-5 h-5 hidden" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+          <path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M6 18L18 6M6 6l12 12"></path>
+        </svg>
+      </button>
+    </div>
+  </div>
+
+  <!-- Mobile & Tablet Slide-Over Drawer Navigation -->
+  <div
+    id="mobile-menu"
+    class="hidden lg:hidden border-t border-white/10 bg-[#0c0c0c] max-h-[85vh] overflow-y-auto px-4 sm:px-8 py-6 space-y-4 shadow-2xl"
+  >
+    <div class="flex flex-col space-y-1">
+      {navMenu.map((item, idx) => {
+        const hasSubmenu = item.subitems && item.subitems.length > 0;
+        const accordionId = `accordion-${idx}`;
+
+        if (!hasSubmenu) {
+          return (
+            <a
+              href={item.href}
+              class="text-xs uppercase tracking-[0.15em] font-semibold text-neutral-200 hover:text-[#f0dc28] py-3 px-2 border-b border-white/5 flex items-center justify-between"
+            >
+              <span>{item.name}</span>
+              <span class="text-neutral-500 font-mono">→</span>
+            </a>
+          );
+        }
+
+        return (
+          <div class="border-b border-white/5 py-1">
+            <button
+              type="button"
+              data-accordion-toggle={accordionId}
+              class="w-full text-xs uppercase tracking-[0.15em] font-semibold text-neutral-200 hover:text-[#f0dc28] py-3 px-2 flex items-center justify-between cursor-pointer select-none"
+            >
+              <div class="flex items-center gap-2">
+                <span>{item.name}</span>
+                {item.highlight && <span class="w-1.5 h-1.5 rounded-full bg-[#f0dc28]"></span>}
+              </div>
+              <svg
+                class="w-4 h-4 text-neutral-400 transition-transform duration-200 transform accordion-arrow"
+                fill="none"
+                viewBox="0 0 24 24"
+                stroke="currentColor"
+              >
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7" />
+              </svg>
+            </button>
+
+            <!-- Accordion Drawer Subitems -->
+            <div id={accordionId} class="hidden pl-4 pr-2 pb-3 space-y-2 bg-[#141414]/70 border-l border-[#f0dc28]/40 ml-2 mt-1">
+              <a
+                href={item.href}
+                class="block py-2 text-[11px] font-semibold text-[#f0dc28] hover:underline"
+              >
+                {item.name} Hauptseite öffnen →
+              </a>
+              {item.subitems.map((sub) => {
+                if (sub.divider) {
+                  return <div class="border-t border-white/10 my-1"></div>;
+                }
+                return (
+                  <a
+                    href={sub.href}
+                    class={`block py-1.5 text-xs ${
+                      sub.special ? 'text-[#f0dc28] font-semibold' : 'text-neutral-300 hover:text-white'
+                    } flex items-center justify-between`}
+                  >
+                    <span>{sub.name}</span>
+                    {sub.count && (
+                      <span class="text-[9px] font-mono px-1 py-0.5 bg-black/60 text-[#f0dc28] border border-white/10">
+                        {sub.count}
+                      </span>
+                    )}
+                  </a>
+                );
+              })}
+            </div>
+          </div>
+        );
+      })}
+    </div>
+
+    <!-- Mobile Contact & WhatsApp CTAs -->
+    <div class="pt-4 space-y-3">
+      <a
+        href="/kontakt"
+        class="block w-full text-center py-3.5 text-xs uppercase tracking-[0.15em] font-bold text-black bg-[#f0dc28] hover:bg-white transition-all shadow"
+      >
+        Showroom & Projekt anfragen
+      </a>
+
+      <div class="grid grid-cols-2 gap-3">
+        <a
+          href="tel:+492151391919"
+          class="block w-full text-center py-2.5 text-[11px] font-mono uppercase tracking-wider text-white border border-white/20 hover:border-[#f0dc28]"
+        >
+          📞 Anrufen
+        </a>
+        <a
+          href="https://wa.me/491773919190"
+          target="_blank"
+          rel="noopener noreferrer"
+          class="block w-full text-center py-2.5 text-[11px] font-mono uppercase tracking-wider text-[#f0dc28] border border-[#f0dc28]/40 hover:bg-[#f0dc28]/10"
+        >
+          💬 WhatsApp
+        </a>
+      </div>
+    </div>
+  </div>
+</header>
+
+<style>
+  @keyframes fadeIn {
+    from { opacity: 0; transform: translateY(-4px); }
+    to { opacity: 1; transform: translateY(0); }
+  }
+  .animate-fadeIn {
+    animation: fadeIn 0.2s cubic-bezier(0.16, 1, 0.3, 1) forwards;
+  }
+</style>
+
+<script>
+  const toggleBtn = document.getElementById('mobile-menu-toggle');
+  const mobileMenu = document.getElementById('mobile-menu');
+  const hamburgerIcon = document.getElementById('hamburger-icon');
+  const closeIcon = document.getElementById('close-icon');
+
+  if (toggleBtn && mobileMenu && hamburgerIcon && closeIcon) {
+    toggleBtn.addEventListener('click', () => {
+      const isExpanded = toggleBtn.getAttribute('aria-expanded') === 'true';
+      toggleBtn.setAttribute('aria-expanded', (!isExpanded).toString());
+      mobileMenu.classList.toggle('hidden');
+      hamburgerIcon.classList.toggle('hidden');
+      closeIcon.classList.toggle('hidden');
+    });
+  }
+
+  // Mobile Accordion Toggle Handlers
+  const accordionButtons = document.querySelectorAll('[data-accordion-toggle]');
+  accordionButtons.forEach((btn) => {
+    btn.addEventListener('click', () => {
+      const targetId = btn.getAttribute('data-accordion-toggle');
+      if (!targetId) return;
+      const targetEl = document.getElementById(targetId);
+      const arrowIcon = btn.querySelector('.accordion-arrow');
+      if (targetEl) {
+        targetEl.classList.toggle('hidden');
+        if (arrowIcon) {
+          arrowIcon.classList.toggle('rotate-180');
+        }
+      }
+    });
+  });
+</script>

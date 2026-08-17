@@ -1,0 +1,227 @@
+---
+// GalleryLightbox.astro - Universelle Vollbild-Fotogalerie für Dino Bruns Raumdesign
+---
+
+<div
+  id="gallery-lightbox"
+  class="fixed inset-0 z-[9999] hidden bg-black/95 backdrop-blur-md opacity-0 transition-opacity duration-300 flex flex-col justify-between"
+  role="dialog"
+  aria-modal="true"
+  aria-label="Fotogalerie"
+>
+  <!-- Top Bar -->
+  <div class="flex items-center justify-between p-4 sm:p-6 text-white border-b border-white/10 select-none">
+    <div class="flex items-center gap-3">
+      <span class="w-2.5 h-2.5 bg-[#f0dc28]"></span>
+      <span id="lightbox-category" class="text-xs uppercase tracking-widest font-mono text-[#f0dc28]">
+        Galerie
+      </span>
+      <span class="text-white/30 text-xs">|</span>
+      <span id="lightbox-counter" class="text-xs text-neutral-300 font-mono">
+        1 / 1
+      </span>
+    </div>
+
+    <!-- Close Button -->
+    <button
+      id="lightbox-close"
+      class="p-2 text-white/70 hover:text-white hover:bg-white/10 transition-all rounded-sm cursor-pointer"
+      aria-label="Galerie schließen"
+    >
+      <svg class="w-6 h-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12" />
+      </svg>
+    </button>
+  </div>
+
+  <!-- Main Image Stage -->
+  <div class="relative flex-1 flex items-center justify-center p-4 sm:p-8 overflow-hidden">
+    <!-- Prev Button -->
+    <button
+      id="lightbox-prev"
+      class="absolute left-2 sm:left-6 z-10 p-3 text-white/80 hover:text-white hover:bg-black/60 bg-black/40 border border-white/10 transition-all cursor-pointer backdrop-blur-sm"
+      aria-label="Vorheriges Bild"
+    >
+      <svg class="w-6 h-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 19l-7-7 7-7" />
+      </svg>
+    </button>
+
+    <!-- Current Image Container -->
+    <div class="relative max-w-5xl max-h-[75vh] flex items-center justify-center">
+      <img
+        id="lightbox-image"
+        src=""
+        alt="Galerieansicht"
+        class="max-w-full max-h-[75vh] object-contain shadow-2xl border border-white/10 transition-transform duration-200"
+      />
+    </div>
+
+    <!-- Next Button -->
+    <button
+      id="lightbox-next"
+      class="absolute right-2 sm:right-6 z-10 p-3 text-white/80 hover:text-white hover:bg-black/60 bg-black/40 border border-white/10 transition-all cursor-pointer backdrop-blur-sm"
+      aria-label="Nächstes Bild"
+    >
+      <svg class="w-6 h-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7" />
+      </svg>
+    </button>
+  </div>
+
+  <!-- Bottom Thumbnail Strip -->
+  <div class="border-t border-white/10 p-3 sm:p-4 bg-black/80 backdrop-blur-sm">
+    <div
+      id="lightbox-thumbnails"
+      class="flex items-center gap-2 overflow-x-auto max-w-5xl mx-auto py-1 px-2 scrollbar-thin scrollbar-thumb-white/20"
+    >
+      <!-- Injected via JS -->
+    </div>
+  </div>
+</div>
+
+<script>
+  // Global Lightbox Manager
+  declare global {
+    interface Window {
+      openLightbox?: (images: string[], startIndex?: number, categoryName?: string) => void;
+    }
+  }
+
+  const lightbox = document.getElementById('gallery-lightbox');
+  const lightboxImg = document.getElementById('lightbox-image') as HTMLImageElement;
+  const lightboxCounter = document.getElementById('lightbox-counter');
+  const lightboxCategory = document.getElementById('lightbox-category');
+  const lightboxThumbnails = document.getElementById('lightbox-thumbnails');
+  const closeBtn = document.getElementById('lightbox-close');
+  const prevBtn = document.getElementById('lightbox-prev');
+  const nextBtn = document.getElementById('lightbox-next');
+
+  let currentImages: string[] = [];
+  let currentIndex = 0;
+  let currentCat = 'Galerie';
+
+  function updateView() {
+    if (!lightboxImg || currentImages.length === 0) return;
+    lightboxImg.src = currentImages[currentIndex];
+    if (lightboxCounter) {
+      lightboxCounter.textContent = `${currentIndex + 1} / ${currentImages.length}`;
+    }
+    if (lightboxCategory) {
+      lightboxCategory.textContent = currentCat;
+    }
+
+    // Highlight active thumbnail
+    if (lightboxThumbnails) {
+      const thumbs = lightboxThumbnails.querySelectorAll('img');
+      thumbs.forEach((t, i) => {
+        if (i === currentIndex) {
+          t.className = 'w-16 h-12 object-cover border-2 border-[#f0dc28] opacity-100 cursor-pointer shrink-0 transition-all';
+          t.scrollIntoView({ behavior: 'smooth', block: 'nearest', inline: 'center' });
+        } else {
+          t.className = 'w-16 h-12 object-cover border border-white/20 opacity-50 hover:opacity-100 cursor-pointer shrink-0 transition-all';
+        }
+      });
+    }
+  }
+
+  function open(images: string[], startIndex = 0, categoryName = 'Galerie') {
+    if (!lightbox || images.length === 0) return;
+    currentImages = images;
+    currentIndex = Math.max(0, Math.min(startIndex, images.length - 1));
+    currentCat = categoryName;
+
+    // Build thumbnail strip
+    if (lightboxThumbnails) {
+      lightboxThumbnails.innerHTML = '';
+      images.forEach((src, idx) => {
+        const thumb = document.createElement('img');
+        thumb.src = src;
+        thumb.loading = 'lazy';
+        thumb.alt = `Vorschau ${idx + 1}`;
+        thumb.addEventListener('click', () => {
+          currentIndex = idx;
+          updateView();
+        });
+        lightboxThumbnails.appendChild(thumb);
+      });
+    }
+
+    updateView();
+    lightbox.classList.remove('hidden');
+    // Fade in
+    requestAnimationFrame(() => {
+      lightbox.classList.remove('opacity-0');
+      lightbox.classList.add('opacity-100');
+    });
+    document.body.style.overflow = 'hidden';
+  }
+
+  function close() {
+    if (!lightbox) return;
+    lightbox.classList.remove('opacity-100');
+    lightbox.classList.add('opacity-0');
+    setTimeout(() => {
+      lightbox.classList.add('hidden');
+      document.body.style.overflow = '';
+      if (lightboxImg) lightboxImg.src = '';
+    }, 300);
+  }
+
+  function prev() {
+    if (currentImages.length <= 1) return;
+    currentIndex = (currentIndex - 1 + currentImages.length) % currentImages.length;
+    updateView();
+  }
+
+  function next() {
+    if (currentImages.length <= 1) return;
+    currentIndex = (currentIndex + 1) % currentImages.length;
+    updateView();
+  }
+
+  // Attach global function
+  window.openLightbox = open;
+
+  // Event Listeners
+  closeBtn?.addEventListener('click', close);
+  prevBtn?.addEventListener('click', prev);
+  nextBtn?.addEventListener('click', next);
+
+  // Keyboard navigation
+  window.addEventListener('keydown', (e) => {
+    if (lightbox?.classList.contains('hidden')) return;
+    if (e.key === 'Escape') close();
+    if (e.key === 'ArrowLeft') prev();
+    if (e.key === 'ArrowRight') next();
+  });
+
+  // Close when clicking outside image
+  lightbox?.addEventListener('click', (e) => {
+    if (e.target === lightbox || (e.target as HTMLElement).classList.contains('relative flex-1')) {
+      close();
+    }
+  });
+
+  // Global trigger listeners for elements with data attributes
+  document.addEventListener('click', (e) => {
+    const target = (e.target as HTMLElement).closest('[data-open-gallery]');
+    if (target) {
+      e.preventDefault();
+      const startIdx = parseInt(target.getAttribute('data-start-index') || '0', 10);
+      const catName = target.getAttribute('data-gallery-title') || 'Galerie';
+
+      // Check if inline images JSON is provided
+      const rawImages = target.getAttribute('data-gallery-images');
+      if (rawImages) {
+        try {
+          const parsed = JSON.parse(rawImages);
+          if (Array.isArray(parsed) && parsed.length > 0) {
+            open(parsed, startIdx, catName);
+            return;
+          }
+        } catch (_) {}
+      }
+    }
+  });
+</script>

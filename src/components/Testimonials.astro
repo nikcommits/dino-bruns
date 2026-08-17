@@ -1,0 +1,90 @@
+---
+const reviews = [
+  {
+    author: 'Dipl.-Ing. Marc V.',
+    role: 'Innenarchitekt & Projektentwickler',
+    location: 'Düsseldorf / Meerbusch',
+    quote: 'Dino Bruns realisiert in unseren Villenprojekten fugenlose Betonböden und Frescolori-Kalkmarmorputze mit einer handwerklichen Perfektion, die man im Markt nur sehr selten findet. Absolute Termintreue und meisterhafte Haptik.',
+    project: 'Penthouse & Villenumbau',
+    rating: 5,
+  },
+  {
+    author: 'Familie Dr. K.',
+    role: 'Bauherren',
+    location: 'Krefeld Bockum',
+    quote: 'Wir wollten unser Badezimmer komplett ohne Fliesen und Fugen gestalten. Die Beratung im Showroom an der Grotenburgstraße war überragend – die Ausführung durch Dino Bruns und sein Team staubarm, präzise und bis ins Detail durchdacht.',
+    project: 'Master-Bad mit fugenloser Dusche',
+    rating: 5,
+  },
+  {
+    author: 'Beate & Thomas S.',
+    role: 'Eigentümer',
+    location: 'Düsseldorf Oberkassel',
+    quote: 'Die Kombination aus fließenden mineralischen Wänden und den maßgefertigten JAB-Anstoetz-Vorhängen hat unserem offenen Wohn- und Essbereich eine unglaubliche Akustik und Eleganz verliehen. Eine 100%ige Empfehlung!',
+    project: 'Wohnraum-Neugestaltung & Vorhangsysteme',
+    rating: 5,
+  },
+];
+---
+
+<section class="py-24 bg-[#0a0a0a] text-white border-b border-white/10 relative">
+  <div class="max-w-7xl mx-auto px-4 sm:px-8">
+    
+    <!-- Section Header -->
+    <div class="flex flex-col md:flex-row justify-between items-start md:items-end gap-6 mb-16 pb-8 border-b border-white/10">
+      <div class="space-y-2">
+        <div class="inline-flex items-center gap-2">
+          <span class="w-2 h-2 bg-[#f0dc28]"></span>
+          <span class="text-xs uppercase tracking-[0.2em] font-semibold text-[#f0dc28]">
+            Stimmen & Referenzen
+          </span>
+        </div>
+        <h2 class="font-serif text-4xl sm:text-5xl font-normal text-white">
+          Das Vertrauen anspruchsvoller Bauherren.
+        </h2>
+      </div>
+
+      <div class="text-xs uppercase tracking-widest text-neutral-300 border border-white/15 px-4 py-2 bg-[#141414]">
+        100% Meisterqualität in Krefeld & Rheinland
+      </div>
+    </div>
+
+    <!-- Reviews Grid with Elevation & High Legibility -->
+    <div class="grid grid-cols-1 md:grid-cols-3 gap-8 gsap-stagger-grid">
+      {reviews.map((r) => (
+        <div class="card-elevation p-8 sm:p-10 flex flex-col justify-between hover:border-[#f0dc28]/60 transition-all duration-300 group">
+          <div class="space-y-6">
+            
+            <!-- 5 Golden Stars Rating -->
+            <div class="flex items-center gap-1 text-[#f0dc28]">
+              {Array.from({ length: r.rating }).map(() => (
+                <svg class="w-4 h-4 fill-current" viewBox="0 0 20 20">
+                  <path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z"></path>
+                </svg>
+              ))}
+            </div>
+
+            <!-- Quote Text (High Contrast & Clear Size) -->
+            <blockquote class="text-sm sm:text-[15px] text-neutral-100 leading-relaxed font-normal">
+              „{r.quote}“
+            </blockquote>
+          </div>
+
+          <div class="pt-6 border-t border-white/10 mt-8 space-y-2">
+            <div class="font-serif text-xl sm:text-2xl font-normal text-white group-hover:text-[#f0dc28] transition-colors">
+              {r.author}
+            </div>
+            <div class="text-xs text-neutral-300 font-light">
+              {r.role} • <span class="text-white font-medium">{r.location}</span>
+            </div>
+            <div class="text-xs uppercase tracking-wider text-[#f0dc28] font-mono pt-1 font-semibold flex items-center gap-2">
+              <span class="text-neutral-500">•</span>
+              <span>{r.project}</span>
+            </div>
+          </div>
+        </div>
+      ))}
+    </div>
+
+  </div>
+</section>

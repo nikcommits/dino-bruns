@@ -1,0 +1,102 @@
+---
+const showcases = [
+  {
+    id: 'waschtisch',
+    tag: '01 / Unikat & Wand',
+    title: 'Waschtisch auf Hobelbank',
+    loc: 'Meerbusch',
+    desc: 'Bespoke Waschtisch aus antiker Werkbank vor samtig fugenloser Kalkmarmor-Wand.',
+    image: '/img/IMG_2570-512.jpg',
+    aspect: 'aspect-[4/5]',
+    link: '/kalkmarmorputz',
+  },
+  {
+    id: 'masterbad',
+    tag: '02 / Frescolori® Highlight',
+    title: 'Fugenloses Bad & Spa',
+    loc: 'Krefeld',
+    desc: 'Walk-In Dusche mit beleuchteter Nische, fugenloser Spachteltechnik und freistehender Wanne.',
+    image: '/img/IMG_5479-512.jpg',
+    aspect: 'aspect-[4/5]',
+    link: '/kalkmarmorputz',
+    featured: true,
+  },
+  {
+    id: 'betonboden',
+    tag: '03 / Gießverfahren',
+    title: 'Fugenloser Betonboden',
+    loc: 'Düsseldorf / Rheinland',
+    desc: 'Großflächiger mineralischer Gießboden mit lebendiger Wolkenstruktur und Kamin.',
+    image: '/img/IMG_5909-512.jpg',
+    aspect: 'aspect-[4/5]',
+    link: '/betonoptik',
+  },
+];
+---
+
+<section class="py-24 bg-[#0a0a0a] text-white border-b border-white/10 overflow-hidden relative">
+  <div class="max-w-7xl mx-auto px-4 sm:px-8">
+    
+    <!-- Headline with Clean Typography -->
+    <div class="text-center max-w-3xl mx-auto mb-16 space-y-4">
+      <span class="text-[11px] uppercase tracking-[0.25em] font-semibold text-[#f0dc28] block">
+        Handwerkliche Meisterstücke
+      </span>
+      <h2 class="font-serif text-3xl sm:text-5xl font-normal text-white">
+        Vom Naturrohstoff zum meisterhaften Unikat.
+      </h2>
+      <p class="text-sm sm:text-base text-neutral-300 font-normal max-w-xl mx-auto leading-relaxed">
+        Mineralische Werkstoffe, meisterhaft verarbeitet – jedes Projekt millimetergenau auf die Architektur abgestimmt.
+      </p>
+    </div>
+
+    <!-- 3-Column Sharp Architectural Showcase Grid (Optimized for 512px Native Crispness) -->
+    <div class="grid grid-cols-1 md:grid-cols-3 gap-8 gsap-stagger-grid">
+      {showcases.map((item) => (
+        <div class={`card-elevation ${item.featured ? '!border-[#f0dc28]/80 shadow-2xl' : ''} flex flex-col justify-between group hover:border-[#f0dc28]/60 transition-all duration-300`}>
+          
+          <!-- Image Box (Native 380px Column Width - 100% Crisp 1:1 Rendering) -->
+          <div class={`relative ${item.aspect} overflow-hidden border-b border-white/10 bg-black`}>
+            <img
+              src={item.image}
+              alt={item.title}
+              class="w-full h-full object-cover okc-image-hover gsap-parallax-img"
+              loading="lazy"
+            />
+            <div class="absolute top-0 left-0 bg-[#0a0a0a]/90 backdrop-blur-sm text-white px-3 py-1.5 text-[10px] uppercase tracking-widest border-r border-b border-white/10 font-mono">
+              {item.tag}
+            </div>
+            <div class="absolute bottom-3 right-3 bg-black/80 backdrop-blur-sm px-2.5 py-1 text-[10px] uppercase tracking-widest text-[#f0dc28] border border-white/10">
+              {item.loc}
+            </div>
+          </div>
+
+          <!-- Content Details -->
+          <div class="p-6 sm:p-8 space-y-4">
+            <h3 class="font-serif text-2xl font-normal text-white group-hover:text-[#f0dc28] transition-colors">
+              {item.title}
+            </h3>
+            
+            <p class="text-xs text-neutral-300 leading-relaxed font-normal">
+              {item.desc}
+            </p>
+
+            <div class="pt-2">
+              <a
+                href={item.link}
+                class="text-xs font-semibold uppercase tracking-wider text-white hover:text-[#f0dc28] flex items-center justify-between border-t border-white/10 pt-4 transition-colors group/link"
+              >
+                <span>Details & Impressionen</span>
+                <svg class="w-3.5 h-3.5 transform transition-transform group-hover/link:translate-x-1" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5">
+                  <path d="M5 12h14M12 5l7 7-7 7"></path>
+                </svg>
+              </a>
+            </div>
+          </div>
+
+        </div>
+      ))}
+    </div>
+
+  </div>
+</section>
